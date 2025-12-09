@@ -16,10 +16,19 @@
     <span class="label">Modo oscuro</span>
   </button>
 
+  
+  <!-- BOTÓN MENÚ (mobile, tipo GPT) -->
+  <button id="menuToggle" class="menu-toggle" aria-label="Abrir índice">
+    ☰
+  </button>
+
+  <!-- OVERLAY PARA MOBILE -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
   <div class="shell">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar collapsed" id="sidebar">
+    <aside class="sidebar" id="sidebar">
       <header class="sidebar-header">
         <div class="sidebar-title-wrap">
           <div class="sidebar-title">
@@ -39,7 +48,6 @@
 
       <!-- ÍNDICE AUTOMÁTICO (PINTADO DESDE JS) -->
       <ul class="toc" id="toc-dynamic"></ul>
-
     </aside>
 
     <!-- MAIN -->

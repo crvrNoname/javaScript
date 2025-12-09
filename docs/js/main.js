@@ -145,21 +145,55 @@ function renderSidebarToc() {
 // =========================
 // 3) SIDEBAR MOBILE
 // =========================
+// (function () {
+//   const sidebar = document.getElementById("sidebar");
+//   const sidebarToggle = document.getElementById("sidebarToggle");
+
+//   if (!sidebar || !sidebarToggle) return;
+
+//   sidebarToggle.addEventListener("click", () => {
+//     sidebar.classList.toggle("collapsed");
+//   });
+
+//   const tocLinks = sidebar.querySelectorAll(".toc a");
+//   tocLinks.forEach((link) => {
+//     link.addEventListener("click", () => {
+//       if (window.innerWidth <= 900) {
+//         sidebar.classList.add("collapsed");
+//       }
+//     });
+//   });
+// })();
+
+// ----- Sidebar tipo GPT en mobile -----
 (function () {
+  const body = document.body;
   const sidebar = document.getElementById("sidebar");
-  const sidebarToggle = document.getElementById("sidebarToggle");
+  const menuToggle = document.getElementById("menuToggle");
+  const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-  if (!sidebar || !sidebarToggle) return;
+  if (!sidebar) return; // seguridad
 
-  sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
-  });
+  // Abrir / cerrar con el botón hamburguesa
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      body.classList.toggle("sidebar-open");
+    });
+  }
 
+  // Cerrar tocando el overlay
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener("click", () => {
+      body.classList.remove("sidebar-open");
+    });
+  }
+
+  // Cerrar al seleccionar un link del índice (solo en mobile)
   const tocLinks = sidebar.querySelectorAll(".toc a");
   tocLinks.forEach((link) => {
     link.addEventListener("click", () => {
       if (window.innerWidth <= 900) {
-        sidebar.classList.add("collapsed");
+        body.classList.remove("sidebar-open");
       }
     });
   });
