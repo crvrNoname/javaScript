@@ -1,0 +1,317 @@
+<!-- docs/02midLevel/01objetoWindow.html -->
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sprint Nº1 — Objeto window | Roadmap Mid Level JS</title>
+
+  <!-- Ruta relativa desde 02midLevel -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <!-- BOTÓN MODO OSCURO -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+    <span class="icon">🌙</span>
+    <span class="label">Modo oscuro</span>
+  </button>
+
+  <div class="shell">
+    <!-- SIDEBAR DEL SPRINT -->
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-header">
+        <div class="sidebar-title-wrap">
+          <div class="sidebar-title">
+            <span class="icon">📘</span>
+            <span>Sprint Nº1 — Objeto window</span>
+          </div>
+          <p class="sidebar-subtitle">
+            Navega por las secciones de este sprint.
+          </p>
+        </div>
+
+        <div class="sidebar-toggle">
+          <button id="sidebarToggle" type="button">
+            <span class="icon">📑</span>
+            <span class="label">Índice</span>
+          </button>
+        </div>
+      </header>
+
+      <ul class="toc">
+        <li><a href="../index.html">⬅ Volver al índice general</a></li>
+        <li><a class="chapter-link" href="#intro">🎯 Objetivo del Sprint</a></li>
+        <li><a class="chapter-link" href="#explicacion">📘 Explicación profesional</a></li>
+        <li><a class="chapter-link" href="#ejemplo-simple">💻 Ejemplo simple</a></li>
+        <li><a class="chapter-link" href="#ejemplo-admin">🏢 Ejemplo aplicado</a></li>
+        <li><a class="chapter-link" href="#ejercicio">✍️ Ejercicio para hacer a mano</a></li>
+        <li><a class="chapter-link" href="#mini-test">🧪 Mini-evaluación</a></li>
+        <li><a class="chapter-link" href="#checklist">✔ Checklist de cierre</a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+      <header>
+        <h1>Sprint Nº1 — Objeto <code>window</code></h1>
+        <div class="pill">
+          <span>🎯 Mid Level JavaScript</span>
+          <span>Dalto⁺ + Extras</span>
+        </div>
+      </header>
+
+      <!-- BREADCRUMB -->
+      <nav class="breadcrumb">
+        <a href="../index.html">Inicio</a> ›
+        <span>Sprint Nº1 — Objeto window</span>
+      </nav>
+
+      <!-- OBJETIVO DEL SPRINT -->
+      <section id="intro" class="chapter">
+        <h2>🎯 Objetivo del Sprint</h2>
+        <p class="chapter-tag">
+          Comprender a nivel profesional el objeto <code>window</code> como raíz del entorno del navegador,
+          sus propiedades globales, su relación con el DOM, los timers disponibles y los eventos fundamentales
+          que controlan el ciclo de vida de una página web.
+        </p>
+        <p>
+          Este conocimiento es clave para desarrollar aplicaciones web Mid-Level con comportamiento dinámico,
+          asincronía y estructuras reactivas.
+        </p>
+      </section>
+
+      <!-- EXPLICACIÓN PROFESIONAL -->
+      <section id="explicacion" class="chapter">
+        <h2>📘 1. Explicación profesional</h2>
+
+        <h3>✅ Definición de <code>window</code></h3>
+        <ul class="sprint-list-main">
+          <li><code>window</code> es el <strong>objeto global</strong> del navegador.</li>
+          <li>
+            Representa la <strong>ventana del navegador</strong>, incluyendo:
+            <ul>
+              <li>el documento (<code>document</code>)</li>
+              <li>historial (<code>history</code>)</li>
+              <li>localización (<code>location</code>)</li>
+              <li>timers (<code>setTimeout</code> / <code>setInterval</code>)</li>
+              <li>APIs del navegador (storage, geolocation, notifications, etc.)</li>
+            </ul>
+          </li>
+          <li>Todo lo que declaras en el <strong>scope global</strong> se agrega a <code>window</code>.</li>
+        </ul>
+
+        <h3>✅ Propiedades globales fundamentales</h3>
+        <ul class="sprint-list-main">
+          <li><code>window.document</code> → referencia al DOM completo.</li>
+          <li><code>window.location</code> → URL actual, redirecciones, navegación.</li>
+          <li><code>window.history</code> → historial de navegación del usuario.</li>
+          <li><code>window.navigator</code> → información del navegador y dispositivo.</li>
+          <li><code>window.screen</code> → dimensiones de pantalla.</li>
+          <li>
+            Dimensiones de ventana:
+            <ul>
+              <li><code>innerWidth</code> / <code>innerHeight</code></li>
+              <li><code>outerWidth</code> / <code>outerHeight</code></li>
+            </ul>
+          </li>
+        </ul>
+        <p class="chapter-tag">
+          🧠 Todo lo que ves, cargas o ejecutas en el navegador depende del objeto <code>window</code>.
+        </p>
+
+        <h3>✅ Relación con el DOM (<code>document</code>)</h3>
+        <p>
+          <code>window</code> contiene a <code>document</code>, que a su vez contiene el DOM.
+        </p>
+
+        <pre><code>window → document → html → body → elementos</code></pre>
+
+        <p>Eventos del DOM que dependen de <code>window</code>:</p>
+        <ul class="sprint-list-main">
+          <li><code>DOMContentLoaded</code></li>
+          <li><code>load</code></li>
+        </ul>
+        <p class="chapter-tag">
+          🧠 Dominar <code>window</code> permite entender cuándo el DOM está listo para manipularlo.
+        </p>
+
+        <h3>✅ Timers</h3>
+        <p>El navegador incorpora mecanismos asincrónicos esenciales:</p>
+        <ul class="sprint-list-main">
+          <li>
+            <strong><code>setTimeout()</code></strong> → ejecuta una función <strong>una sola vez</strong> después de X milisegundos.
+          </li>
+          <li>
+            <strong><code>setInterval()</code></strong> → ejecuta una función <strong>repetidamente</strong> cada X milisegundos.
+          </li>
+          <li>
+            <strong><code>clearTimeout()</code> y <code>clearInterval()</code></strong> →
+            permiten cancelar la ejecución programada.
+          </li>
+        </ul>
+        <p class="chapter-tag">
+          🔥 Los timers no son parte del core de JS, sino del navegador, expuestos por <code>window</code>.
+        </p>
+
+        <h3>✅ Eventos de ventana</h3>
+        <p>Eventos fundamentales para controlar el ciclo de vida del sitio:</p>
+        <ul class="sprint-list-main">
+          <li>
+            <strong><code>load</code></strong> → se ejecuta cuando TODOS los recursos terminaron de cargar
+            (imágenes, scripts, etc.).
+          </li>
+          <li>
+            <strong><code>DOMContentLoaded</code></strong> → se ejecuta cuando solo el DOM está cargado
+            (más rápido que <code>load</code>).
+          </li>
+          <li><strong><code>resize</code></strong> → detecta cambios de tamaño en la ventana.</li>
+          <li><strong><code>scroll</code></strong> → detecta desplazamientos en la ventana.</li>
+        </ul>
+        <p class="chapter-tag">
+          🧠 Estos eventos permiten construir interfaces dinámicas, responsivas y reactivas.
+        </p>
+      </section>
+
+      <!-- EJEMPLO SIMPLE -->
+      <section id="ejemplo-simple" class="chapter">
+        <h2>💻 2. Ejemplo simple (ejecutable)</h2>
+
+        <pre><code class="language-js">
+// archivo: 01windowBasics.js
+// ❗ Este ejemplo debe ser probado en el navegador (F12 → Console)
+
+// Mostrar dimensiones de ventana
+console.log("Ancho interno:", window.innerWidth);
+console.log("Alto interno:", window.innerHeight);
+
+// Timer simple
+setTimeout(() => {
+  console.log("Han pasado 2 segundos.");
+}, 2000);
+
+// Evento de carga del documento
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM listo para trabajar.");
+});
+        </code></pre>
+
+        <p class="chapter-tag">
+          Nota: las propiedades de <code>window</code> solo existen en navegador, no en Node.
+          La lógica de temporizador como concepto es reutilizable, pero este código se prueba en el navegador.
+        </p>
+      </section>
+
+      <!-- EJEMPLO APLICADO -->
+      <section id="ejemplo-admin" class="chapter">
+        <h2>🏢 3. Ejemplo aplicado a sistema administrativo</h2>
+
+        <pre><code class="language-js">
+// archivo: 01adminAppWindow.js
+// Simulación: notificar al usuario cuando la ventana cambie de tamaño
+
+window.addEventListener("resize", () => {
+  console.log(`Nueva dimensión: ${window.innerWidth}px`);
+});
+
+// Simulación: carga inicial del sistema
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("Cargando módulo de clientes…");
+  cargarClientes();
+});
+
+// Timer simulando carga de datos del servidor
+function cargarClientes() {
+  setTimeout(() => {
+    console.log("Clientes cargados correctamente.");
+  }, 1500);
+}
+        </code></pre>
+      </section>
+
+      <!-- EJERCICIO -->
+      <section id="ejercicio" class="chapter">
+        <h2>✍️ 4. Ejercicio para hacer a mano</h2>
+
+        <ol class="sprint-list-main">
+          <li>
+            Dibuja en tu cuaderno el árbol:
+            <pre><code>window → document → html → body → elementos</code></pre>
+          </li>
+          <li>Escribe 3 propiedades que dependen de <code>window</code>.</li>
+          <li>
+            Explica con tus palabras la diferencia entre:
+            <ul>
+              <li><code>load</code></li>
+              <li><code>DOMContentLoaded</code></li>
+            </ul>
+          </li>
+          <li>Responde: ¿qué hace <code>setInterval</code> y cómo se detiene?</li>
+        </ol>
+      </section>
+
+      <!-- MINI TEST -->
+      <section id="mini-test" class="chapter">
+        <h2>🧪 5. Mini-evaluación</h2>
+
+        <ol class="sprint-list-main">
+          <li>
+            <strong>1.</strong> <code>window</code> es:
+            <ul>
+              <li>a) Un método</li>
+              <li>b) Un objeto global del navegador</li>
+              <li>c) Una función del DOM</li>
+            </ul>
+          </li>
+          <li>
+            <strong>2.</strong> ¿Qué evento se ejecuta primero?
+            <ul>
+              <li>a) <code>load</code></li>
+              <li>b) <code>DOMContentLoaded</code></li>
+              <li>c) <code>resize</code></li>
+            </ul>
+          </li>
+          <li>
+            <strong>3.</strong> ¿Cuál timer ejecuta repetidamente una función?
+            <ul>
+              <li>a) <code>setTimeout</code></li>
+              <li>b) <code>setInterval</code></li>
+              <li>c) <code>clearInterval</code></li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>✔ Respuestas sugeridas</h3>
+        <ul class="sprint-list-main">
+          <li>1 → b</li>
+          <li>2 → b</li>
+          <li>3 → b</li>
+        </ul>
+      </section>
+
+      <!-- CHECKLIST -->
+      <section id="checklist" class="chapter">
+        <h2>✔ 6. Checklist de cierre</h2>
+        <ul class="sprint-list-main">
+          <li>[ ] Entiendo qué es <code>window</code> y su relación con el DOM.</li>
+          <li>[ ] Conozco las propiedades fundamentales del objeto global.</li>
+          <li>[ ] Sé cuándo usar <code>load</code> y <code>DOMContentLoaded</code>.</li>
+          <li>[ ] Comprendo el funcionamiento de <code>setTimeout</code> y <code>setInterval</code>.</li>
+          <li>[ ] Puedo usar eventos de ventana en un proyecto real.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+<button id="backToTop" class="back-to-top" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5"></path>
+    <polyline points="5 12 12 5 19 12"></polyline>
+  </svg>
+</button>
+
+
+  <!-- JS PRINCIPAL COMO MÓDULO -->
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

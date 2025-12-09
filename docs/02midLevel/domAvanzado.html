@@ -1,0 +1,274 @@
+<!-- docs/02midLevel/domAvanzado.html -->
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sprint 1 – DOM avanzado | Roadmap Mid Level JS</title>
+
+  <!-- RUTA RELATIVA DESDE 02midLevel -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <!-- BOTÓN MODO OSCURO -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+    <span class="icon">🌙</span>
+    <span class="label">Modo oscuro</span>
+  </button>
+
+  <div class="shell">
+    <!-- SIDEBAR DEL SPRINT -->
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-header">
+        <div class="sidebar-title-wrap">
+          <div class="sidebar-title">
+            <span class="icon">📘</span>
+            <span>Sprint 1 – DOM avanzado</span>
+          </div>
+          <p class="sidebar-subtitle">
+            Navega por las secciones de este sprint.
+          </p>
+        </div>
+
+        <div class="sidebar-toggle">
+          <button id="sidebarToggle" type="button">
+            <span class="icon">📑</span>
+            <span class="label">Índice</span>
+          </button>
+        </div>
+      </header>
+
+      <ul class="toc">
+        <li><a href="../index.html">⬅ Volver al índice general</a></li>
+        <li><a class="chapter-link" href="#intro">🎯 Introducción y objetivos</a></li>
+        <li><a class="chapter-link" href="#conceptos">📚 Conceptos clave</a></li>
+        <li><a class="chapter-link" href="#snippets">💻 Snippets básicos de DOM</a></li>
+        <li><a class="chapter-link" href="#ejemplo-admin">🧩 Ejemplo: Sistema Administrativo</a></li>
+        <li><a class="chapter-link" href="#ejercicio">✍️ Ejercicio propuesto</a></li>
+        <li><a class="chapter-link" href="#mini-test">🧠 Mini test (3 preguntas)</a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL DEL SPRINT -->
+    <main>
+      <header>
+        <h1>Sprint 1 – DOM avanzado</h1>
+        <div class="pill">
+          <span>🎯 Nivel 2 Mid Level JS</span>
+          <span>Dalto⁺ + Extras</span>
+        </div>
+      </header>
+
+      <!-- BREADCRUMB SIMPLE -->
+      <nav class="breadcrumb">
+        <a href="../index.html">Inicio</a> ›
+        <span>Sprint 1 – DOM avanzado</span>
+      </nav>
+
+      <!-- INTRO -->
+      <section id="intro" class="chapter">
+        <h2>🎯 Introducción y objetivos</h2>
+        <p class="chapter-tag">
+          En este sprint trabajas con el <strong>DOM (Document Object Model)</strong> de forma
+          consciente y controlada: seleccionando nodos, modificando contenido, atributos y estilos,
+          y creando elementos nuevos desde JavaScript.
+        </p>
+        <p>
+          El objetivo final es que puedas <strong>controlar la interfaz de usuario</strong> de tu
+          futura app administrativa sin tocar el HTML manualmente cada vez.
+        </p>
+      </section>
+
+      <!-- CONCEPTOS CLAVE -->
+      <section id="conceptos" class="chapter">
+        <h2>📚 Conceptos clave</h2>
+        <ul class="sprint-list-main">
+          <li><strong>DOM:</strong> representación en memoria de la página HTML.</li>
+          <li><code>document</code>: punto de entrada principal al DOM.</li>
+          <li>
+            <strong>Selección de nodos:</strong>
+            <code>getElementById</code>, <code>querySelector</code>, <code>querySelectorAll</code>.
+          </li>
+          <li><strong>Modificación:</strong> <code>textContent</code>, <code>innerHTML</code>, atributos,
+            clases, estilos, etc.</li>
+          <li><strong>Creación de nodos:</strong> <code>createElement</code>, <code>append</code>,
+            <code>appendChild</code>, <code>before</code>, <code>remove</code>.</li>
+        </ul>
+      </section>
+
+      <!-- SNIPPETS BÁSICOS -->
+      <section id="snippets" class="chapter">
+        <h2>💻 Snippets básicos de DOM</h2>
+
+        <h3>1. Seleccionar elementos</h3>
+        <p class="chapter-tag">
+          Diferentes formas de seleccionar elementos según su id, clase o etiqueta.
+        </p>
+
+        <pre><code class="language-js">
+// archivo: 01-selectores-dom.js
+// node 01-selectores-dom.js (solo a modo ilustrativo, en realidad corre en el navegador)
+
+const tituloPrincipal = document.getElementById("titulo");
+const botonGuardar = document.querySelector(".btn-guardar");
+const filas = document.querySelectorAll("tr.fila-cliente");
+
+console.log(tituloPrincipal);
+console.log(botonGuardar);
+console.log(`Total filas: ${filas.length}`);
+        </code></pre>
+
+        <h3>2. Modificar texto y clases</h3>
+        <pre><code class="language-js">
+// archivo: 02-modificar-dom.js
+
+const alerta = document.querySelector(".alerta");
+
+alerta.textContent = "Cliente guardado correctamente.";
+alerta.classList.remove("is-hidden");
+alerta.classList.add("is-success");
+        </code></pre>
+      </section>
+
+      <!-- EJEMPLO APLICADO A SISTEMA ADMINISTRATIVO -->
+      <section id="ejemplo-admin" class="chapter">
+        <h2>🧩 Ejemplo aplicado: listado de clientes</h2>
+        <p class="chapter-tag">
+          Ejemplo típico de un sistema administrativo: mostrar un listado de clientes a partir de datos en memoria.
+        </p>
+
+        <p>
+          Supón que tienes un arreglo de clientes y quieres pintar una
+          <strong>tabla dinámica</strong> en el módulo de "Clientes".
+        </p>
+
+        <pre><code class="language-html">
+<!-- Fragmento HTML base -->
+&lt;section class="modulo-clientes"&gt;
+  &lt;h2&gt;Clientes&lt;/h2&gt;
+  &lt;table id="tabla-clientes"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;Nombre&lt;/th&gt;
+        &lt;th&gt;RUT&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;&lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/section&gt;
+        </code></pre>
+
+        <pre><code class="language-js">
+// archivo: 03-clientes-dom.js
+
+const clientes = [
+  { id: 1, nombre: "Ana López", rut: "11.111.111-1" },
+  { id: 2, nombre: "Juan Pérez", rut: "22.222.222-2" },
+  { id: 3, nombre: "Cristo Riquelme", rut: "33.333.333-3" },
+];
+
+const cuerpoTabla = document.querySelector("#tabla-clientes tbody");
+
+clientes.forEach((cliente) => {
+  const fila = document.createElement("tr");
+  fila.classList.add("fila-cliente");
+
+  fila.innerHTML = `
+    &lt;td&gt;${cliente.id}&lt;/td&gt;
+    &lt;td&gt;${cliente.nombre}&lt;/td&gt;
+    &lt;td&gt;${cliente.rut}&lt;/td&gt;
+  `;
+
+  cuerpoTabla.appendChild(fila);
+});
+        </code></pre>
+
+        <p>
+          ➜ Aquí usas:
+          <strong>selección de nodos</strong>, <strong>creación dinámica</strong> e
+          <strong>inserción en el DOM</strong>. Es la base para cualquier módulo de tu
+          sistema administrativo (clientes, productos, ventas, etc.).
+        </p>
+      </section>
+
+      <!-- EJERCICIO -->
+      <section id="ejercicio" class="chapter">
+        <h2>✍️ Ejercicio propuesto</h2>
+        <p class="chapter-tag">
+          Haz este ejercicio sin copiar/pegar el ejemplo, intentando escribir todo desde cero.
+        </p>
+        <ol class="sprint-list-main">
+          <li>Crea un archivo HTML con un &lt;section&gt; llamada "Productos" y una tabla vacía.</li>
+          <li>
+            En un archivo JS, define un arreglo de productos con:
+            <code>id</code>, <code>nombre</code> y <code>precio</code>.
+          </li>
+          <li>
+            Usa DOM avanzado para:
+            <ul>
+              <li>Seleccionar el &lt;tbody&gt; de la tabla.</li>
+              <li>Crear una fila por cada producto.</li>
+              <li>Insertar las filas en el DOM.</li>
+            </ul>
+          </li>
+          <li>
+            Agrega una clase CSS especial a las filas cuyo precio sea mayor a cierto valor
+            (por ejemplo, productos &gt; 50.000).
+          </li>
+        </ol>
+      </section>
+
+      <!-- MINI TEST -->
+      <section id="mini-test" class="chapter">
+        <h2>🧠 Mini test (3 preguntas)</h2>
+
+        <ol class="sprint-list-main">
+          <li>
+            <strong>1.</strong> ¿Cuál es la diferencia entre
+            <code>querySelector</code> y <code>querySelectorAll</code>?
+            <details>
+              <summary>Ver respuesta</summary>
+              <p>
+                <code>querySelector</code> devuelve el <strong>primer elemento</strong>
+                que coincide con el selector. <code>querySelectorAll</code> devuelve
+                <strong>todas las coincidencias</strong> en forma de NodeList.
+              </p>
+            </details>
+          </li>
+
+          <li>
+            <strong>2.</strong> ¿Qué método utilizarías para crear un nuevo
+            &lt;tr&gt; desde JavaScript?
+            <details>
+              <summary>Ver respuesta</summary>
+              <p>
+                Usaría <code>document.createElement("tr")</code> y luego
+                lo insertaría con <code>appendChild</code> o <code>append</code>.
+              </p>
+            </details>
+          </li>
+
+          <li>
+            <strong>3.</strong> ¿Por qué es preferible modificar el DOM de forma
+            controlada (por ejemplo, usando plantillas y funciones) en un sistema
+            administrativo real?
+            <details>
+              <summary>Ver respuesta</summary>
+              <p>
+                Porque mejora la <strong>legibilidad</strong>, evita errores,
+                facilita el mantenimiento y permite reutilizar la lógica en varios
+                módulos (clientes, productos, ventas, etc.).
+              </p>
+            </details>
+          </li>
+        </ol>
+      </section>
+    </main>
+  </div>
+
+  <!-- JS PRINCIPAL COMO MÓDULO -->
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
