@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 
-<body>
+<!-- 👇 Clase para activar el layout fullscreen desde CSS -->
+<body class="layout-fullscreen">
   <!-- BOTÓN MODO OSCURO -->
   <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
     <span class="icon">🌙</span>
     <span class="label">Modo oscuro</span>
   </button>
 
-  
   <!-- BOTÓN MENÚ (mobile, tipo GPT) -->
   <button id="menuToggle" class="menu-toggle" aria-label="Abrir índice">
     ☰
@@ -25,6 +25,10 @@
   <!-- OVERLAY PARA MOBILE -->
   <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
+  <!--
+    .shell se va a convertir en contenedor fullscreen (flex)
+    sin max-width ni centrado en CSS.
+  -->
   <div class="shell">
 
     <!-- SIDEBAR -->
@@ -51,7 +55,8 @@
     </aside>
 
     <!-- MAIN -->
-    <main>
+    <!-- 👇 Clase para aplicar el padding y el offset de la sidebar -->
+    <main class="main-content">
       <header>
         <h1>Roadmap Mid Level JavaScript</h1>
 
@@ -78,15 +83,15 @@
 
     </main>
   </div>
-<!-- BOTON SUBIR -->
-<button id="backToTop" class="back-to-top" aria-label="Volver arriba">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 19V5"></path>
-    <polyline points="5 12 12 5 19 12"></polyline>
-  </svg>
-</button>
 
+  <!-- BOTON SUBIR -->
+  <button id="backToTop" class="back-to-top" aria-label="Volver arriba">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5"></path>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
 
   <!-- CARGAMOS EL JS COMO MÓDULO -->
   <script type="module" src="./js/main.js"></script>
