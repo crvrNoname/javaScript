@@ -644,6 +644,11 @@ pre code {
     pointer-events: auto;
   }
 
+  /* Bloquear scroll del body cuando el drawer está abierto */
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
   /* Contenido principal */
   main {
     padding: 1.25rem 1.1rem 2.2rem;

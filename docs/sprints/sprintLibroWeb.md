@@ -138,6 +138,18 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 - Adaptación al nuevo sistema responsive.
 
 ---
+# 🧩 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
+
+Vamos a:
+- Unificar la lógica del drawer en **un solo módulo JS**.
+- Cerrar la sidebar con:
+  - botón hamburguesa,
+  - overlay,
+  - tecla `Esc`,
+  - click en links del índice.
+- Bloquear el scroll del body cuando el drawer está abierto (mobile).
+
+---
 
 ## 📅 Sprint 006 — Modularización del JavaScript
 **Estado:** 🕐 Pendiente  

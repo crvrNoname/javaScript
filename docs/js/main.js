@@ -1,48 +1,48 @@
 // docs/js/main.js
 
-import { sprintsMidLevelDaltoPlus } from "./data/sprintsMidLevel.js";
+import { sprintsMidLevelDaltoPlus } from './data/sprintsMidLevel.js'
 
 // =========================
 // 1) RENDER DEL ÍNDICE PRINCIPAL
 // =========================
 
-const cardsContainer = document.getElementById("sprints-container");
-const tocContainer = document.getElementById("toc-dynamic");
+const cardsContainer = document.getElementById('sprints-container')
+const tocContainer = document.getElementById('toc-dynamic')
 
 if (cardsContainer) {
-  renderSprintCards();
+  renderSprintCards()
 }
 
 if (tocContainer) {
-  renderSidebarToc();
+  renderSidebarToc()
 }
 
 // En el main: título de capítulo + burbujas de sprints
 function renderSprintCards() {
-  cardsContainer.innerHTML = "";
+  cardsContainer.innerHTML = ''
 
   sprintsMidLevelDaltoPlus.forEach((capitulo) => {
     // contenedor por capítulo
-    const capWrapper = document.createElement("section");
-    capWrapper.classList.add("chapter-group");
-    capWrapper.id = `capitulo-${capitulo.capitulo}`;
+    const capWrapper = document.createElement('section')
+    capWrapper.classList.add('chapter-group')
+    capWrapper.id = `capitulo-${capitulo.capitulo}`
 
-    const titleEl = document.createElement("h3");
-    titleEl.classList.add("chapter-group-title");
-    titleEl.textContent = capitulo.tituloCapitulo;
+    const titleEl = document.createElement('h3')
+    titleEl.classList.add('chapter-group-title')
+    titleEl.textContent = capitulo.tituloCapitulo
 
-    const descEl = document.createElement("p");
-    descEl.classList.add("chapter-group-desc");
-    descEl.textContent = capitulo.descripcion;
+    const descEl = document.createElement('p')
+    descEl.classList.add('chapter-group-desc')
+    descEl.textContent = capitulo.descripcion
 
     // grid interno de tarjetas
-    const grid = document.createElement("div");
-    grid.classList.add("chapter-sprints-grid");
+    const grid = document.createElement('div')
+    grid.classList.add('chapter-sprints-grid')
 
     capitulo.sprints.forEach((sprint) => {
-      const card = document.createElement("div");
-      card.classList.add("sprint-card");
-      card.id = `sprint-${sprint.numero}`;
+      const card = document.createElement('div')
+      card.classList.add('sprint-card')
+      card.id = `sprint-${sprint.numero}`
 
       card.innerHTML = `
         <div class="sprint-title">
@@ -51,96 +51,96 @@ function renderSprintCards() {
         <div class="sprint-sub">
           ${capitulo.tituloCapitulo}
         </div>
-        <a class="sprint-link" href="${sprint.archivo ?? "#"}">
+        <a class="sprint-link" href="${sprint.archivo ?? '#'}">
           📘 Ver Sprint
         </a>
-      `;
+      `
 
-      grid.appendChild(card);
-    });
+      grid.appendChild(card)
+    })
 
-    capWrapper.appendChild(titleEl);
-    capWrapper.appendChild(descEl);
-    capWrapper.appendChild(grid);
-    cardsContainer.appendChild(capWrapper);
-  });
+    capWrapper.appendChild(titleEl)
+    capWrapper.appendChild(descEl)
+    capWrapper.appendChild(grid)
+    cardsContainer.appendChild(capWrapper)
+  })
 }
 
 // En el sidebar: links al capítulo y a cada sprint
 function renderSidebarToc() {
-  tocContainer.innerHTML = "";
+  tocContainer.innerHTML = ''
 
   sprintsMidLevelDaltoPlus.forEach((capitulo) => {
-    const liCap = document.createElement("li");
+    const liCap = document.createElement('li')
 
     // link al título del capítulo
-    const aCap = document.createElement("a");
-    aCap.href = `#capitulo-${capitulo.capitulo}`;
-    aCap.textContent = capitulo.tituloCapitulo;
-    aCap.classList.add("chapter-link");
+    const aCap = document.createElement('a')
+    aCap.href = `#capitulo-${capitulo.capitulo}`
+    aCap.textContent = capitulo.tituloCapitulo
+    aCap.classList.add('chapter-link')
 
-    liCap.appendChild(aCap);
+    liCap.appendChild(aCap)
 
-    const ulSprints = document.createElement("ul");
-    ulSprints.classList.add("sprint-list");
+    const ulSprints = document.createElement('ul')
+    ulSprints.classList.add('sprint-list')
 
     capitulo.sprints.forEach((sprint) => {
-      const liSprint = document.createElement("li");
-      const aSprint = document.createElement("a");
+      const liSprint = document.createElement('li')
+      const aSprint = document.createElement('a')
 
       // link al sprint dentro del índice (burbuja)
-      aSprint.href = `#sprint-${sprint.numero}`;
-      aSprint.textContent = `Sprint Nº${sprint.numero} — ${sprint.titulo}`;
+      aSprint.href = `#sprint-${sprint.numero}`
+      aSprint.textContent = `Sprint Nº${sprint.numero} — ${sprint.titulo}`
 
-      liSprint.appendChild(aSprint);
-      ulSprints.appendChild(liSprint);
-    });
+      liSprint.appendChild(aSprint)
+      ulSprints.appendChild(liSprint)
+    })
 
-    liCap.appendChild(ulSprints);
-    tocContainer.appendChild(liCap);
-  });
+    liCap.appendChild(ulSprints)
+    tocContainer.appendChild(liCap)
+  })
 }
 
 // =========================
 // 2) MODO OSCURO
 // =========================
-(function () {
-  const root = document.documentElement;
-  const btn = document.getElementById("themeToggle");
-  if (!btn) return;
+;(function () {
+  const root = document.documentElement
+  const btn = document.getElementById('themeToggle')
+  if (!btn) return
 
-  const iconSpan = btn.querySelector(".icon");
-  const labelSpan = btn.querySelector(".label");
+  const iconSpan = btn.querySelector('.icon')
+  const labelSpan = btn.querySelector('.label')
 
   function applyTheme(theme) {
-    root.setAttribute("data-theme", theme);
-    if (theme === "dark") {
-      iconSpan.textContent = "☀️";
-      labelSpan.textContent = "Modo claro";
+    root.setAttribute('data-theme', theme)
+    if (theme === 'dark') {
+      iconSpan.textContent = '☀️'
+      labelSpan.textContent = 'Modo claro'
     } else {
-      iconSpan.textContent = "🌙";
-      labelSpan.textContent = "Modo oscuro";
+      iconSpan.textContent = '🌙'
+      labelSpan.textContent = 'Modo oscuro'
     }
   }
 
-  const stored = localStorage.getItem("mljs-theme");
+  const stored = localStorage.getItem('mljs-theme')
 
-  if (stored === "light" || stored === "dark") {
-    applyTheme(stored);
+  if (stored === 'light' || stored === 'dark') {
+    applyTheme(stored)
   } else {
     const prefersDark =
       window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    applyTheme(prefersDark ? "dark" : "light");
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    applyTheme(prefersDark ? 'dark' : 'light')
   }
 
-  btn.addEventListener("click", () => {
-    const current = root.getAttribute("data-theme") || "light";
-    const next = current === "dark" ? "light" : "dark";
-    applyTheme(next);
-    localStorage.setItem("mljs-theme", next);
-  });
-})();
+  btn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') || 'light'
+    const next = current === 'dark' ? 'light' : 'dark'
+    applyTheme(next)
+    localStorage.setItem('mljs-theme', next)
+  })
+})()
 
 // =========================
 // 3) SIDEBAR MOBILE
@@ -165,63 +165,95 @@ function renderSidebarToc() {
 //   });
 // })();
 
-// ----- Sidebar tipo GPT en mobile -----
-(function () {
-  const body = document.body;
-  const sidebar = document.getElementById("sidebar");
-  const menuToggle = document.getElementById("menuToggle");
-  const sidebarOverlay = document.getElementById("sidebarOverlay");
+// ----- Sidebar tipo GPT en mobile (drawer unificado) -----
+;(function () {
+  const body = document.body
+  const sidebar = document.getElementById('sidebar')
+  const menuToggle = document.getElementById('menuToggle')
+  const sidebarOverlay = document.getElementById('sidebarOverlay')
+  const innerToggle = document.getElementById('sidebarToggle') // botón dentro del header sidebar (opcional)
 
-  if (!sidebar) return; // seguridad
+  if (!sidebar || !menuToggle || !sidebarOverlay) return
 
-  // Abrir / cerrar con el botón hamburguesa
-  if (menuToggle) {
-    menuToggle.addEventListener("click", () => {
-      body.classList.toggle("sidebar-open");
-    });
+  const OPEN_CLASS = 'sidebar-open'
+
+  const isMobile = () => window.innerWidth <= 900
+
+  const openSidebar = () => {
+    body.classList.add(OPEN_CLASS)
+  }
+
+  const closeSidebar = () => {
+    body.classList.remove(OPEN_CLASS)
+  }
+
+  const toggleSidebar = () => {
+    if (!isMobile()) return // solo drawer en mobile
+    if (body.classList.contains(OPEN_CLASS)) {
+      closeSidebar()
+    } else {
+      openSidebar()
+    }
+  }
+
+  // Botón hamburguesa flotante (abajo izquierda)
+  menuToggle.addEventListener('click', toggleSidebar)
+
+  // Botón interno dentro de la sidebar (si existe)
+  if (innerToggle) {
+    innerToggle.addEventListener('click', toggleSidebar)
   }
 
   // Cerrar tocando el overlay
-  if (sidebarOverlay) {
-    sidebarOverlay.addEventListener("click", () => {
-      body.classList.remove("sidebar-open");
-    });
-  }
+  sidebarOverlay.addEventListener('click', closeSidebar)
 
-  // Cerrar al seleccionar un link del índice (solo en mobile)
-  const tocLinks = sidebar.querySelectorAll(".toc a");
+  // Cerrar al seleccionar un link del índice (solo mobile)
+  const tocLinks = sidebar.querySelectorAll('.toc a')
   tocLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth <= 900) {
-        body.classList.remove("sidebar-open");
+    link.addEventListener('click', () => {
+      if (isMobile()) {
+        closeSidebar()
       }
-    });
-  });
-})();
+    })
+  })
 
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeSidebar()
+    }
+  })
+
+  // Si redimensionamos a desktop, garantizar que el drawer esté cerrado
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      closeSidebar()
+    }
+  })
+})()
 
 // =========================
 // 4) BOTÓN "VOLVER ARRIBA"
 // =========================
-(function () {
-  const btnTop = document.getElementById("backToTop");
-  if (!btnTop) return;
+;(function () {
+  const btnTop = document.getElementById('backToTop')
+  if (!btnTop) return
 
   const toggleVisibility = () => {
-    const y = window.scrollY || document.documentElement.scrollTop;
+    const y = window.scrollY || document.documentElement.scrollTop
     if (y > 400) {
-      btnTop.classList.add("visible");
+      btnTop.classList.add('visible')
     } else {
-      btnTop.classList.remove("visible");
+      btnTop.classList.remove('visible')
     }
-  };
+  }
 
-  window.addEventListener("scroll", toggleVisibility);
+  window.addEventListener('scroll', toggleVisibility)
 
-  btnTop.addEventListener("click", () => {
+  btnTop.addEventListener('click', () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
-    });
-  });
-})();
+      behavior: 'smooth',
+    })
+  })
+})()

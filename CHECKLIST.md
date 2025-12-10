@@ -84,7 +84,53 @@ _(Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo)_
 - [x] Main-content correctamente desplazado a la derecha en ≥900px.
 - [x] En mobile, la sidebar sigue siendo drawer sin cambios visuales.
 - [x] Ningún elemento de contenido pierde padding o estructura.
-- [ ] Preparado para Sprint 007 (JS Drawer clean-up).
+- [X] Preparado para Sprint 007 (JS Drawer clean-up).
+
+# 🧩 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
+
+### ✔ Checklist funcional
+
+- [X] El menú lateral en mobile se abre/cierra correctamente con el botón `#menuToggle`.
+- [x] El botón interno `#sidebarToggle` (dentro del header de la sidebar) también abre/cierra el drawer en mobile.
+- [x] Al hacer click en el overlay (`#sidebarOverlay`), el drawer se cierra.
+- [x] Al hacer click en cualquier link del índice (`.toc a`) en mobile, el drawer se cierra.
+- [x] Al presionar la tecla `Esc`, el drawer se cierra.
+- [x] Al pasar de mobile a desktop (redimensionando ventana), el drawer queda cerrado y no rompe el layout.
+- [x] En **mobile (≤ 900px)**, cuando el drawer está abierto (`body.sidebar-open`):
+  - [x] El body tiene el scroll bloqueado (`overflow: hidden`).
+  - [x] La sidebar se muestra en modo panel lateral (drawer).
+  - [x] El overlay se muestra oscureciendo el contenido y es clicable.
+- [x] En **desktop (> 900px)**:
+  - [x] La sidebar se ve siempre fija a la izquierda.
+  - [x] No hay overlay activo.
+  - [x] El contenido principal (`.main-content`) se comporta con normalidad.
+
+### ✔ Sin errores
+
+- [x] No aparecen errores en consola relacionados con:
+  - `menuToggle`
+  - `sidebar`
+  - `sidebarOverlay`
+  - `sidebarToggle`
+- [x] El TOC dinámico sigue funcionando (click en capítulos y sprints desplaza correctamente).
+
+
+---
+
+## ✅ Checklist Sprint 007 (para `CHECKLIST.md`)
+
+- [ ] La sidebar se abre/cierra con un único botón principal (`#menuToggle`).
+- [ ] El botón interno `#sidebarToggle` se usa solo si aporta algo o se desactiva sin romper nada.
+- [ ] El overlay (`#sidebarOverlay`) aparece al abrir el menú y desaparece al cerrarlo.
+- [ ] Se agrega/quita la clase `sidebar-open` en `<body>` de forma centralizada.
+- [ ] Al abrir el drawer:
+  - [ ] Se bloquea el scroll del contenido en mobile (si aplica).
+- [ ] Al hacer click en el overlay, se cierra el menú.
+- [ ] Al hacer `Esc` en el teclado, se cierra el menú.
+- [ ] No hay errores en consola relacionados con `menuToggle`, `sidebar`, `sidebarOverlay` o `sidebarToggle`.
+- [ ] El comportamiento se mantiene coherente en anchos 1200px, 900px, 768px y 600px.
+
+---
 
 
 - [ ] Sidebar ocupa 100% de alto y mayor ancho
