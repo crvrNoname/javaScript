@@ -61,6 +61,32 @@ _(Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo)_
 
 ### 📱 **Modo Fullscreen (pendiente de construir)**
 
+# ✅ Sprint 005 — Fullscreen Layout (Paso 1)
+
+### ✔ Checklist de implementación (HTML Ready)
+
+- [x] Se agregó la clase `layout-fullscreen` al `<body>`.
+- [x] Se asignó `class="main-content"` al `<main>`.
+- [x] Se mantuvo el wrapper `.shell` sin eliminarlo (se adaptará en Sprint 006).
+- [x] El overlay mobile (`#sidebarOverlay`) permanece intacto.
+- [x] Se identificaron los triggers de menú (`menuToggle` y `sidebarToggle`) para unificación futura.
+- [x] Estructura HTML lista para recibir el **Fullscreen CSS** (sidebar fija + drawer mobile).
+- [x] No se modificó la estructura del contenido (capítulos, header, etc.).
+
+### ✔ Commit aplicado
+
+# 🚀 Sprint 006 — Fullscreen Layout (CSS Base)
+### ✔ Checklist
+
+- [x] Body dejó de estar centrado (`layout-fullscreen` aplicado).
+- [x] `.shell` convertida a contenedor fullscreen sin bordes ni sombra.
+- [x] Sidebar fija en desktop (`position: fixed`, `width: 300px`).
+- [x] Main-content correctamente desplazado a la derecha en ≥900px.
+- [x] En mobile, la sidebar sigue siendo drawer sin cambios visuales.
+- [x] Ningún elemento de contenido pierde padding o estructura.
+- [ ] Preparado para Sprint 007 (JS Drawer clean-up).
+
+
 - [ ] Sidebar ocupa 100% de alto y mayor ancho
 - [ ] Animación tipo “drawer” nativa
 - [ ] Botón close dedicado (opcional)
