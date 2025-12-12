@@ -1,332 +1,337 @@
-# 📋 CHECKLIST.md
+<!-- ===================================================================== -->
+<!-- FILE: CHECKLIST.md                                                    -->
+<!-- ===================================================================== -->
 
-**Panel de control general del proyecto SprintLibroWeb**  
-_(Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo)_
+# 📋 CHECKLIST — SprintLibroWeb
+
+**Panel de control general del proyecto**  
+Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 
 ---
 
-# 1️⃣ Checklist por ETAPAS del proyecto
+## ✅ Estado actual (Qué quedó OK y corregido)
 
-### 🧱 **Estructura base**
+### 🧱 Estructura base
 
-- [x] Organización inicial de carpetas (`docs/`, `03master/`, etc.)
+- [x] Organización inicial de carpetas (`docs/`, capítulos, assets)
 - [x] Archivos principales creados (`index.html`, `style.css`, `main.js`)
-- [x] Crear `utils.js` para funciones comunes
+- [x] Base `js/data/` para arrays de capítulos/sprints
 
----
-
-### 🎨 **UI / Diseño**
+### 🎨 UI / Diseño
 
 - [x] Estilo general definido
-- [x] Paleta de colores light/dark aplicada
-- [x] Radii y espaciados estandarizados
-- [ ] Ajustes de tipografía global
-- [ ] Revisión UX en pantallas pequeñas
+- [x] Paleta light/dark aplicada
+- [x] Radios y espaciados base estandarizados
 
-#### 🔍 Revisión UX en pantallas pequeñas (breakpoints 900 / 768 / 600px)
+### 📑 Sidebar (menú tipo GPT)
+
+- [x] Sidebar móvil funcional
+- [x] Overlay funciona correctamente
+- [x] Botón menú ubicado correctamente en mobile
+- [x] Fondo sólido para legibilidad
+
+### 🌙 Modo oscuro
+
+- [x] Variables CSS para dark mode
+- [x] Toggle funcional
+- [x] Persistencia en localStorage
+
+### 🔧 Modularización JS (base)
+
+- [x] `main.js` lógica general
+- [x] `sidebar.js` aislado
+- [x] `theme.js` separado
+- [x] `scroll.js` funcional (si existe typo en repo, corregir a `scroll.js`)
+
+---
+
+## 1️⃣ Checklist por áreas (permanente)
+
+### 🎨 UI / Diseño — pendientes globales
+
+- [x] Ajustes de tipografía global
+- [x] Revisión UX en pantallas pequeñas (900 / 768 / 600)
+
+#### 🔍 Revisión UX (900 / 768 / 600)
 
 - [ ] Sidebar se muestra bien en 900px
 - [ ] TOC ajustado y legible
 - [ ] Botones flotantes no se superponen
 - [ ] No hay doble scrollbar
 - [ ] Tipografías legibles
-- [ ] Padding adecuado para el dedo (mín. 12–16px)
+- [ ] Padding adecuado para dedo (mín. 12–16px)
 - [ ] Animaciones fluidas
 - [ ] Contraste correcto (light/dark)
 
 ---
 
-### 📑 **Sidebar (menú tipo GPT)**
+### 📑 Sidebar (menú tipo GPT) — pendientes
 
-- [x] Sidebar móvil funcional
-- [x] Overlay funcionando correctamente
-- [x] Botón menú ubicado correctamente en mobile
-- [x] Fondo sólido para mejor legibilidad
-- [ ] Ajustar transición de apertura/cierre
-- [ ] Añadir animación suave en elementos del TOC
-- [ ] Preparar versión fullscreen (pendiente)
+- [ ] Ajustar transición apertura/cierre
+- [ ] Animación suave en items del TOC
+- [ ] Preparar versión fullscreen (si aplica)
 
 ---
 
-## 🧪 Checklist visual — Cierre del Sprint
+### 🔧 JS Modular / Refactorización — pendientes
 
-- [x] `.chapter-tag` tiene aire suficiente respecto al contenido anterior y siguiente.
-- [x] Los emojis/íconos dentro de `.chapter-tag` se alinean bien con el texto.
-- [x] Las burbujas `<code>` se ven centradas en:
-  - [x] Párrafos normales.
-  - [x] Títulos que incluyen `<code>` (ej: “Relación conxxx el DOM (`document`)”).
-  - [x] Ítems de listas con varias `<code>` seguidas.
-- [x] En **600px (mobile)** las burbujas `<code>` no se montan ni rompen el layout.
-- [x] Ningún bloque de código largo (`pre > code`) se vio afectado por los cambios.
-
-### 📱 **Modo Fullscreen (pendiente de construir)**
-
-# ✅ Sprint 005 — Fullscreen Layout (Paso 1)
-
-### ✔ Checklist de implementación (HTML Ready)
-
-- [x] Se agregó la clase `layout-fullscreen` al `<body>`.
-- [x] Se asignó `class="main-content"` al `<main>`.
-- [x] Se mantuvo el wrapper `.shell` sin eliminarlo (se adaptará en Sprint 006).
-- [x] El overlay mobile (`#sidebarOverlay`) permanece intacto.
-- [x] Se identificaron los triggers de menú (`menuToggle` y `sidebarToggle`) para unificación futura.
-- [x] Estructura HTML lista para recibir el **Fullscreen CSS** (sidebar fija + drawer mobile).
-- [x] No se modificó la estructura del contenido (capítulos, header, etc.).
-
-### ✔ Commit aplicado
-
-# 🚀 Sprint 006 — Fullscreen Layout (CSS Base)
-
-### ✔ Checklist
-
-- [x] Body dejó de estar centrado (`layout-fullscreen` aplicado).
-- [x] `.shell` convertida a contenedor fullscreen sin bordes ni sombra.
-- [x] Sidebar fija en desktop (`position: fixed`, `width: 300px`).
-- [x] Main-content correctamente desplazado a la derecha en ≥900px.
-- [x] En mobile, la sidebar sigue siendo drawer sin cambios visuales.
-- [x] Ningún elemento de contenido pierde padding o estructura.
-- [x] Preparado para Sprint 007 (JS Drawer clean-up).
-
-# 🧩 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
-
-### ✔ Checklist funcional
-
-- [x] El menú lateral en mobile se abre/cierra correctamente con el botón `#menuToggle`.
-- [x] El botón interno `#sidebarToggle` (dentro del header de la sidebar) también abre/cierra el drawer en mobile.
-- [x] Al hacer click en el overlay (`#sidebarOverlay`), el drawer se cierra.
-- [x] Al hacer click en cualquier link del índice (`.toc a`) en mobile, el drawer se cierra.
-- [x] Al presionar la tecla `Esc`, el drawer se cierra.
-- [x] Al pasar de mobile a desktop (redimensionando ventana), el drawer queda cerrado y no rompe el layout.
-- [x] En **mobile (≤ 900px)**, cuando el drawer está abierto (`body.sidebar-open`):
-  - [x] El body tiene el scroll bloqueado (`overflow: hidden`).
-  - [x] La sidebar se muestra en modo panel lateral (drawer).
-  - [x] El overlay se muestra oscureciendo el contenido y es clicable.
-- [x] En **desktop (> 900px)**:
-  - [x] La sidebar se ve siempre fija a la izquierda.
-  - [x] No hay overlay activo.
-  - [x] El contenido principal (`.main-content`) se comporta con normalidad.
-
-### ✔ Sin errores
-
-- [x] No aparecen errores en consola relacionados con:
-  - `menuToggle`
-  - `sidebar`
-  - `sidebarOverlay`
-  - `sidebarToggle`
-- [x] El TOC dinámico sigue funcionando (click en capítulos y sprints desplaza correctamente).
-
-## 🧪 Checklist — Sprint 008
-
-- [ ] Los paddings globales del `<main>` se ajustaron (entre 2.4rem y 3rem).
-- [ ] El contenido se siente más respirado sin perder densidad visual.
-- [ ] Sidebar y contenido mantienen una distancia agradable en desktop.
-- [ ] El scroll del `<main>` es suave y estable (`scroll-behavior: smooth`).
-- [ ] El layout se adapta correctamente al activar **F11** (fullscreen real).
-- [ ] No quedan restos del layout antiguo (padding del `<body>`, centrados, etc.).
-- [ ] El encabezado principal (`h1`) adopta un estilo tipo workspace (Notion/GPT).
-- [ ] Sidebar tiene padding superior e inferior más amplio (≈2rem).
-- [ ] La UI en fullscreen mantiene proporciones correctas y sin “pegotes” en bordes.
-- [ ] Ningún cambio rompe mobile o tablet.
-
----
-
-# 🧩 Sprint 009 — Fullscreen Real (F11-like) + Polish visual
-
-### ✔ Funcionalidad
-
-- [ ] El botón `#fullscreenToggle` aparece correctamente junto al botón de tema.
-- [ ] Al hacer click en `#fullscreenToggle` cuando NO está en fullscreen:
-  - [ ] La app entra en fullscreen real (API `requestFullscreen`).
-  - [ ] El icono del botón cambia a 🞬.
-- [ ] Al hacer click en `#fullscreenToggle` cuando YA está en fullscreen:
-  - [ ] La app sale de fullscreen.
-  - [ ] El icono del botón vuelve a ⛶.
-- [ ] Al usar F11 o ESC para entrar/salir de fullscreen:
-  - [ ] El icono del botón se sincroniza automáticamente gracias a `fullscreenchange`.
-- [ ] No se producen errores en consola relacionados con fullscreen.
-
-### ✔ UX / Visual
-
-- [ ] En fullscreen (F11 o botón), el contenido no queda pegado a los bordes superior/inferior.
-- [ ] Sidebar mantiene un padding superior cómodo en fullscreen.
-- [ ] El botón de fullscreen se integra bien con:
-  - [ ] `theme-toggle`
-  - [ ] `back-to-top`
-- [ ] El layout fullscreen (Sprints 005–009) se sigue viendo correcto al usar F11:
-  - [ ] sin bordes raros,
-  - [ ] sin recortes,
-  - [ ] sidebar y contenido mantienen proporción.
-
-### ✔ Compatibilidad
-
-- [ ] En navegadores que no soportan bien fullscreen, no se rompe nada (el botón simplemente no hace nada o lanza un error controlado en consola).
-- [ ] En mobile/tablet, si el navegador no permite fullscreen completo, la app sigue funcionando normalmente.
-
----
-
-## ✅ Checklist Sprint 007 (para `CHECKLIST.md`)
-
-- [ ] La sidebar se abre/cierra con un único botón principal (`#menuToggle`).
-- [ ] El botón interno `#sidebarToggle` se usa solo si aporta algo o se desactiva sin romper nada.
-- [ ] El overlay (`#sidebarOverlay`) aparece al abrir el menú y desaparece al cerrarlo.
-- [ ] Se agrega/quita la clase `sidebar-open` en `<body>` de forma centralizada.
-- [ ] Al abrir el drawer:
-  - [ ] Se bloquea el scroll del contenido en mobile (si aplica).
-- [ ] Al hacer click en el overlay, se cierra el menú.
-- [ ] Al hacer `Esc` en el teclado, se cierra el menú.
-- [ ] No hay errores en consola relacionados con `menuToggle`, `sidebar`, `sidebarOverlay` o `sidebarToggle`.
-- [ ] El comportamiento se mantiene coherente en anchos 1200px, 900px, 768px y 600px.
-
----
-
-- [ ] Sidebar ocupa 100% de alto y mayor ancho
-- [ ] Animación tipo “drawer” nativa
-- [ ] Botón close dedicado (opcional)
-- [ ] Ajustes de scroll internos
-- [ ] Testing UX para pulgar (one-hand use)
-
----
-
-### 🌙 **Modo Oscuro**
-
-- [x] Variables CSS para dark mode
-- [x] Botón toggle funcional
-- [x] Persistencia en localStorage
-- [ ] Refinar sombras para tema oscuro
-- [ ] Mejorar contraste accesible en enlaces del TOC
-
----
-
-### 🔧 **JS Modular / Refactorización**
-
-- [x] `main.js` con lógica general
-- [x] `sidebar.js` aislado
-- [x] `theme.js` para modo oscuro
-- [x] `scrooll.js` para scroll top (renombrar luego a `scroll.js`)
-- [ ] Mover funciones duplicadas a `utils.js`
-- [ ] Documentación interna en cada módulo
+- [ ] Crear/llenar `utils.js` para funciones comunes (si realmente hay duplicación)
+- [ ] Encabezado en cada archivo JS (docstring estándar)
 - [ ] Evitar accesos al DOM antes de `DOMContentLoaded`
 
 ---
 
-### 🚀 **Performance**
+### 🚀 Performance — futuro
 
-- [ ] Minificar CSS (en sprint futuro)
-- [ ] Minificar JS (en sprint futuro)
-- [ ] Optimizar imágenes de `/img`
-- [ ] Lazy-load de imágenes grandes
+- [ ] Minificar CSS (sprint futuro)
+- [ ] Minificar JS (sprint futuro)
+- [ ] Optimizar imágenes `/assets/img`
+- [ ] Lazy-load para imágenes grandes
 - [ ] Reducir listeners innecesarios
 
 ---
 
-### ♿ **Accesibilidad**
+### ♿ Accesibilidad — pendientes
 
-- [x] Todos los botones con `aria-label`
-- [x] Área mínima clickeable: 40×40
-- [ ] Navegación con teclado (futuro sprint)
-- [ ] Revisar contraste WCAG en modo oscuro
-- [ ] Añadir `role` en estructuras importantes
+- [x] Botones con `aria-label`
+- [x] Área mínima clickeable 40×40
+- [ ] Navegación con teclado (sprint futuro)
+- [ ] Revisar contraste WCAG real en dark mode
+- [ ] Roles semánticos donde aplique (`nav`, `main`, `aside`, `section`, etc.)
 
 ---
 
-### 🧹 **Limpieza de código**
+### 🧹 Limpieza de código — pendientes
 
-- [ ] Prettier configurado
-- [ ] ESLint (futuro sprint)
+- [ ] Prettier configurado (o reglas equivalentes)
+- [ ] ESLint (futuro)
 - [ ] Remover estilos redundantes
 - [ ] Unificar comentarios
-- [ ] Revisar indentación general del proyecto
+- [ ] Revisar indentación general
 
 ---
 
-# 2️⃣ Checklist ATÓMICO por cada módulo
+## 2️⃣ Checklist visual — Cierre de sprint (regresión UI)
+
+- [x] `.chapter-tag` tiene aire suficiente arriba/abajo
+- [x] Emojis/íconos en `.chapter-tag` alinean con el texto
+- [x] `<code>` inline centrado en:
+  - [x] Párrafos
+  - [x] Títulos con `<code>`
+  - [x] Listas con varias `<code>` seguidas
+- [x] En 600px las “píldoras” `<code>` no rompen layout
+- [x] `pre > code` no afectado por cambios de inline code
 
 ---
 
-## 📌 **sidebar.js**
+## 3️⃣ Checklist por Sprints (Fullscreen + Drawer)
 
-- [ ] Añadir animación más suave al abrir/cerrar
+> Esta sección es la “verdad única” de los sprints técnicos del layout. Evitamos duplicados en otros lados.
+
+### ✅ Sprint 005 — Fullscreen Layout (Paso 1: HTML)
+
+- [x] `body.layout-fullscreen` agregado
+- [x] `<main class="main-content">` aplicado
+- [x] Wrapper `.shell` se mantiene (se adapta luego)
+- [x] Overlay mobile (`#sidebarOverlay`) intacto
+- [x] Triggers identificados (`menuToggle`, `sidebarToggle`) para unificación
+- [x] HTML listo para Fullscreen CSS (sidebar fija + drawer mobile)
+- [x] Sin cambios en contenido (capítulos/header)
+
+### ✅ Sprint 006 — Fullscreen Layout (CSS Base)
+
+- [x] Body deja de estar centrado
+- [x] `.shell` fullscreen sin bordes/sombra
+- [x] Sidebar fija en desktop (`position: fixed`, `width: 300px`)
+- [x] `.main-content` desplazado a la derecha en ≥900px
+- [x] Mobile mantiene drawer
+- [x] Sin pérdida de padding/estructura en contenido
+- [x] Listo para Sprint 007 (JS cleanup)
+
+### ✅ Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
+
+- [x] Drawer abre/cierra con `#menuToggle`
+- [x] Botón interno `#sidebarToggle` también controla drawer (si se mantiene)
+- [x] Click en overlay cierra
+- [x] Click en link del TOC cierra (mobile)
+- [x] Tecla `Esc` cierra
+- [x] Al pasar mobile→desktop el drawer queda cerrado (sin romper layout)
+- [x] Mobile (≤900px) con drawer abierto:
+  - [x] body bloquea scroll (`overflow: hidden`)
+  - [x] overlay visible y clicable
+- [x] Desktop (>900px):
+  - [x] sidebar fija
+  - [x] sin overlay
+  - [x] main normal
+- [x] Sin errores de consola (`menuToggle`, `sidebar`, `sidebarOverlay`, `sidebarToggle`)
+- [x] TOC dinámico sigue funcionando
+
+### 🧪 Sprint 008 — Fine-Tuning Fullscreen Layout (pendiente)
+
+- [ ] Paddings globales del `<main>` ajustados (≈2.4rem–3rem)
+- [ ] Contenido más respirado sin perder densidad
+- [ ] Distancia sidebar ↔ contenido agradable en desktop
+- [ ] Scroll suave y estable (`scroll-behavior: smooth`)
+- [ ] Layout perfecto al activar F11 (fullscreen real)
+- [ ] Sin restos del layout centrado (padding/centrado antiguos)
+- [ ] `h1` estilo workspace (Notion/GPT)
+- [ ] Sidebar con padding vertical más cómodo (≈2rem)
+- [ ] UI fullscreen sin “pegotes” en bordes
+- [ ] Nada rompe mobile/tablet
+
+### 🕐 Sprint 009 — Fullscreen Real (API requestFullscreen) + Polish (pendiente)
+
+#### Funcionalidad
+
+- [ ] Botón `#fullscreenToggle` visible junto a theme
+- [ ] Click entra a fullscreen (API `requestFullscreen`)
+- [ ] Icono cambia (normal ↔ fullscreen)
+- [ ] `fullscreenchange` sincroniza icono al usar F11/ESC
+- [ ] Sin errores de consola
+
+#### UX / Visual
+
+- [ ] En fullscreen real el contenido no queda pegado a bordes
+- [ ] Sidebar mantiene padding superior cómodo
+- [ ] Botón fullscreen se integra con theme + back-to-top
+- [ ] Layout sigue perfecto al usar F11
+
+#### Compatibilidad
+
+- [ ] Si fullscreen no está soportado, no se rompe (fallback controlado)
+- [ ] En mobile/tablet la app sigue funcionando normal
+
+---
+
+## 4️⃣ Checklist atómico por módulo
+
+### 📌 `sidebar.js`
+
+- [x] Fondo sólido para lectura en mobile
+- [ ] Animación más suave abrir/cerrar
 - [ ] Ajustar ancho del panel según contenido
-- [ ] Asegurar cierre automático en todos los TOC links
-- [ ] Mover lógica repetida en un futuro a utils.js
-- [x] Fondo sólido para mejor lectura en mobile
-- [ ] Preparar versión fullscreen
+- [ ] Asegurar cierre automático en todos los links del TOC (validar 100%)
+- [ ] Si hay duplicación, extraer a `utils.js`
+- [ ] Preparar versión fullscreen definitiva
 
----
+### 🌗 `theme.js`
 
-## 🌗 **theme.js**
-
-- [x] Guardar preferencia en localStorage
-- [x] Aplicar tema en `DOMContentLoaded`
-- [ ] Animación suave al cambiar de tema
+- [x] Guarda preferencia en localStorage
+- [x] Aplica tema en `DOMContentLoaded`
+- [ ] Animación suave al cambiar tema
 - [ ] Revisar contraste de todos los elementos
 
----
+### 🡅 `scroll.js`
 
-## 🡅 **scrooll.js (renombrar a scroll.js)**
-
-- [x] Botón "volver arriba" funcional
-- [ ] Mejorar condiciones de aparición
+- [x] Botón “volver arriba” funcional
+- [ ] Mejorar condición de aparición
 - [ ] Animación más fluida al hacer scroll
-- [ ] Unificar nombre de archivo a `scroll.js`
+- [ ] Confirmar nombre final del archivo: `scroll.js` (sin typos)
 
----
+### 🧩 `main.js`
 
-## 🧩 **main.js**
-
-- [ ] Eliminar funciones que ya se movieron a módulos específicos
-- [ ] Garantizar que TODO el DOM se ejecute con `DOMContentLoaded`
-- [ ] Preparar instancias limpias para modularización futura
+- [ ] Eliminar funciones ya movidas a módulos
+- [ ] Asegurar ejecución tras `DOMContentLoaded`
+- [ ] Preparar instancias limpias para futura modularización
 - [ ] Documentación interna pendiente
 
 ---
 
-# 3️⃣ Checklist de buenas prácticas ACTIVAS
+## 5️⃣ Checklist de buenas prácticas activas
 
 ### ✔️ Convenciones del proyecto
 
-- [x] Nombres en JS → camelCase
-- [x] Nombres en CSS → kebab-case
+- [x] JS: camelCase
+- [x] CSS: kebab-case
 - [x] Variables CSS documentadas
 - [ ] Evitar selectores profundos
-- [ ] Añadir encabezado a todos los archivos JS
-
----
+- [ ] Encabezado en todos los JS
 
 ### ✔️ Reglas de commits
 
 - [x] Commits atómicos
 - [x] Formato convencional (`feat:`, `fix:`, etc.)
-- [x] Documentar cada commit en `commits.md`
-- [ ] Crear etiqueta para cada milestone del proyecto
+- [x] Documentar commits en `commits.md`
+- [ ] Etiqueta por milestone
 
----
-
-### ✔️ Documentación del repositorio
+### ✔️ Documentación del repo
 
 - [x] README estructurado
-- [x] Incluir STYLE-GUIDE.md
-- [x] Incluir BEST-PRACTICES.md
-- [x] Incluir CHECKLIST.md
-- [ ] Mantener changelog actualizado sprint por sprint
+- [x] `STYLE-GUIDE.md` incluido
+- [x] `SPRINT-BEST-PRACTICE.md` incluido
+- [x] `CHECKLIST.md` incluido
+- [ ] `CHANGELOG.md` actualizado sprint a sprint
 
 ---
 
-# 4️⃣ Última verificación antes de cada Sprint
+## 6️⃣ Última verificación antes de cada Sprint
 
-Antes de avanzar al siguiente sprint debes revisar:
+- [ ] Sidebar OK en mobile
+- [ ] Theme OK y persistente
+- [ ] TOC muestra capítulos/sprints correctamente
+- [ ] Scroll interno sidebar no rompe layout
+- [ ] Sin errores de consola
+- [ ] Sprint anterior documentado
+- [ ] Commit atómico listo
 
-- [ ] Sidebar funciona bien en mobile
-- [ ] Theme toggle funciona y mantiene persistencia
-- [ ] El TOC muestra correctamente todos los capítulos
-- [ ] El scroll dentro del sidebar no rompe el layout
-- [ ] No hay errores en la consola
-- [ ] Todos los archivos del sprint anterior están documentados
-- [ ] Se escribió el commit atómico correspondiente
+---
+
+## 7️⃣ Checklist técnica — SPA PoC (si se ejecuta)
+
+### A) Preparación
+
+- [ ] Crear `docs/02midLevel/partials/`
+- [ ] Crear `01objetoWindow.partial.html`
+- [ ] Crear `docs/js/router.js`
+
+### B) Shell único (`docs/index.html`)
+
+- [ ] Agregar `<div id="appView"></div>`
+- [ ] Botones flotantes existen solo en Shell (no en partials)
+- [ ] Crear dos listas:
+  - [ ] `<ul id="toc-general" class="toc"></ul>`
+  - [ ] `<ul id="toc-sprint" class="toc"></ul>` (oculta por defecto)
+
+### C) Router SPA (sin recarga)
+
+- [ ] `navigate(path)`:
+  - [ ] `fetch()` partial
+  - [ ] inyecta en `#appView`
+  - [ ] `history.pushState()`
+- [ ] `popstate` back/forward
+- [ ] Interceptar clicks SPA (cards + sidebar)
+- [ ] Estado Home (índice general)
+
+### D) Doble menú
+
+- [ ] TOC general llama `navigate()` (no href a html completos)
+- [ ] TOC sprint:
+  - [ ] detectar `h2[id]` / `section[id]`
+  - [ ] generar anchors internos (scroll)
+  - [ ] oculto automáticamente en Home
+
+### E) Estados persistentes
+
+- [ ] Fullscreen no se pierde al navegar
+- [ ] Theme se mantiene (ya OK)
+- [ ] BackToTop OK
+- [ ] MenuToggle coherente en desktop y mobile
+
+### F) QA rápido
+
+- [ ] Home → índice general
+- [ ] Click Sprint 01 → carga sin recarga
+- [ ] TOC sprint aparece
+- [ ] Volver Home → TOC sprint se oculta
+- [ ] Fullscreen ON → navegar → sigue ON
+- [ ] Drawer mobile ≤900px
+- [ ] Back/Forward del navegador
 
 ---
 
 # ✔️ Conclusión
 
-Este archivo es tu **centro de control general**.  
-Si lo mantienes actualizado, tu proyecto seguirá una ruta profesional, ordenada y escalable sprint tras sprint.
+Este archivo es el centro de control general.  
+Si se mantiene actualizado, el proyecto seguirá una ruta profesional, ordenada y escalable sprint tras sprint.
+
+---

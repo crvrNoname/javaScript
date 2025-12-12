@@ -1,7 +1,11 @@
-# 📘 Libro de Sprints — Proyecto Web (Dalto+)
+<!-- ===================================================================== -->
+<!-- FILE: sprintLibroWeb.md                                               -->
+<!-- ===================================================================== -->
 
-Registro histórico, técnico y estratégico del proceso de desarrollo del proyecto.  
-Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al código y próximos pasos.
+# 📘 Libro de Sprints — SprintLibroWeb (Dalto+)
+
+Registro histórico, técnico y estratégico del proceso de desarrollo.  
+Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al código y próximos pasos.
 
 ---
 
@@ -12,15 +16,15 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 
 ### 🎯 Objetivos
 
-- Crear la estructura general del proyecto.
+- Crear estructura general del proyecto.
 - Implementar repositorio Git en GitHub.
-- Crear archivos iniciales: README.md, .gitignore, index.html.
+- Crear archivos iniciales: README, .gitignore, index.
 
 ### 🧩 Resultado
 
 - Proyecto inicial operativo.
 - Carpetas base creadas.
-- Flujo de trabajo con VSCode + Git funcionando.
+- Flujo VSCode + Git funcionando.
 
 ---
 
@@ -38,8 +42,8 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 ### 🧩 Cambios técnicos
 
 - `sidebar.js` creado.
-- `data/` con arrays de capítulos y sprints.
-- Diseño base de sidebar listo.
+- `docs/js/data/` con arrays de capítulos y sprints.
+- Base de diseño de sidebar lista.
 
 ---
 
@@ -50,251 +54,205 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 
 ### 🎯 Objetivos
 
-- Hacer el menú lateral usable en mobile.
+- Menú lateral usable en mobile.
 - Botón hamburguesa flotante.
 - Overlay clicable.
 - Mejoras en paddings y legibilidad.
 
 ### 🧪 Problemas detectados y resueltos
 
-- Sidebar quedaba borroso → corregido.
-- Overlay no permitía clic en elementos → solucionado.
+- Sidebar borrosa → corregido.
+- Overlay bloqueaba interacción → solucionado.
 - Padding excesivo → optimizado.
 
 ### 🧩 Cambios técnicos
 
 - CSS responsive reorganizado.
-- `sidebar-open` logic refinada.
-- Ajustes de `.toc` y espaciados.
+- Lógica `sidebar-open` refinada.
+- Ajustes `.toc` y espaciados.
 
 ---
 
-## 📅 Sprint 004 — Mejores Prácticas + Documentación del Proyecto
+## 📅 Sprint 004 — Documentación & Mejores Prácticas del Proyecto
 
 **Estado:** 🔄 En desarrollo  
 **Fecha:** 2025-01-XX
 
 ### 🎯 Objetivos
 
-- Crear STYLE-GUIDE.md
-- Crear SPRINT-BEST-PRACTICES.md
-- Crear CHECKLIST.md
-- Crear CHANGELOG.md
-- Organizar flujo profesional de commits.
+- Crear `STYLE-GUIDE.md`
+- Crear `SPRINT-BEST-PRACTICE.md`
+- Crear `CHECKLIST.md`
+- Crear `CHANGELOG.md`
+- Organizar flujo profesional de commits
 
 ### 📚 Archivos documentales agregados
 
 - `STYLE-GUIDE.md`
 - `CHECKLIST.md`
-- `SPRINT-BEST-PRACTICES.md`
+- `SPRINT-BEST-PRACTICE.md`
 - `CHANGELOG.md`
 - `commits.md`
 
 ---
 
-# 🧩 Sprint Nº004.5 — Chapter Tag & Code Pills
+## 📅 Sprint 004.5 — Chapter Tag & Code Pills (UI Fix)
 
-> Ajuste visual de la burbuja `chapter-tag` y de las burbujas `<code>` inline  
-> para evitar que queden “apretadas” con el contenido y se vean desalineadas.
+**Estado:** ✔️ Completado  
+**Fecha:** 2025-01-XX
 
----
+> Ajuste visual de `.chapter-tag` y `<code>` inline para evitar roces y desalineación.
 
-## 🎯 Objetivo del Sprint
+### 🎯 Objetivo
 
-- Dar **más aire vertical** a los mensajes tipo “nota/tip” (`.chapter-tag`).
-- Centrar mejor las burbujas `<code>` en la línea de texto.
-- Evitar que las burbujas `<code>` queden pegadas entre sí o al texto.
-- Mantener compatibilidad con el diseño actual y con `STYLE-GUIDE.md`.
+- Más aire vertical en `.chapter-tag`.
+- `<code>` inline como “píldoras” centradas sin afectar `pre > code`.
+- Compatibilidad con breakpoints (1200 / 900 / 768 / 600).
 
----
+### ✅ Tareas realizadas
 
-## ✅ Tareas
+- Ajuste CSS de `.chapter-tag`.
+- Estilo específico `<code>` inline.
+- Pruebas en breakpoints clave.
+- Test de regresión en capítulos con uso intensivo de `<code>`.
 
-1. **Actualizar el bloque CSS de `.chapter-tag`** al final de  
-   `/docs/css/style.css` para:
+### 💬 Commit sugerido (referencia)
 
-   - Agregar margen vertical extra.
-   - Ajustar `line-height` y layout interno si es necesario.
-
-2. **Definir estilo específico para `<code>` inline** (sin afectar `pre > code`):
-
-   - Convertirlos en “píldoras” centradas (`inline-flex`).
-   - Ajustar padding interno y `border-radius`.
-   - Agregar `margin` lateral para que no se peguen entre sí.
-
-3. **Probar el nuevo diseño en los anchos clave**:
-
-   - 1200px+ (layout full).
-   - 900px.
-   - 768px.
-   - 600px (mobile).
-   - Verificar:
-     - que `.chapter-tag` no roce ni con el listado anterior ni con el título
-       siguiente;
-     - que las burbujas `<code>` no se monten unas sobre otras y se vean
-       centradas tanto en párrafos como en títulos/viñetas.
-
-4. **Test de regresión rápido**:
-
-   - Revisar al menos 2 capítulos distintos donde haya:
-     - una `.chapter-tag`;
-     - varias `<code>` seguidas (`window`, `document`, etc.);
-     - títulos con `<code>` dentro de un `h2/h3`.
-
-5. **Commit & mensaje**:
-   - Commit sugerido:  
-     `chore(ui): refine chapter tag spacing & inline code pills`
+`chore(ui): refine chapter tag spacing & inline code pills`
 
 ---
 
-## 📅 Sprint 005 — Fullscreen Layout (Próximo)
+## 📅 Sprint 005 — Fullscreen Layout (HTML Prep)
 
-**Estado:** 🕐 Próximo  
-**Objetivo:** Llevar el proyecto a un layout fullscreen moderno, sin envolvente `.shell`, como aplicaciones tipo Notion / ChatGPT.
+**Estado:** ✔️ Completado  
+**Fecha:** 2025-01-XX
 
-### 📌 Alcance previsto
-
-- Eliminar container fijo central.
-- Sidebar flotante + contenido en ancho completo en desktop.
-- Adaptación al nuevo sistema responsive.
+**Objetivo:** preparar HTML para layout fullscreen moderno (tipo Notion/ChatGPT).  
+**Notas:** detalle completo en `CHECKLIST.md` (Sprint 005).
 
 ---
 
-# 🧩 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
+## 📅 Sprint 006 — Fullscreen Layout (CSS Base)
 
-Vamos a:
+**Estado:** ✔️ Completado  
+**Fecha:** 2025-01-XX
 
-- Unificar la lógica del drawer en **un solo módulo JS**.
-- Cerrar la sidebar con:
-  - botón hamburguesa,
-  - overlay,
-  - tecla `Esc`,
-  - click en links del índice.
-- Bloquear el scroll del body cuando el drawer está abierto (mobile).
+**Objetivo:** fullscreen CSS base con sidebar fija en desktop y drawer en mobile.  
+**Notas:** detalle completo en `CHECKLIST.md` (Sprint 006).
 
 ---
 
-# 🧩 Sprint 008 — Fine-Tuning Fullscreen Layout
+## 📅 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
 
-_(altura, paddings, scroll smooth — feeling Notion/ChatGPT)_
+**Estado:** ✔️ Completado  
+**Fecha:** 2025-01-XX
 
-## 🎯 Objetivo
-
-- Alinear paddings, alturas y márgenes para que el contenido respire.
-- Ajustar el scroll del `<main>` para que no “salte” ni se sienta brusco.
-- Balancear la distancia visual entre sidebar ↔ contenido.
-- Hacer que en modo **F11 (fullscreen real)** el sitio se vea perfecto:
-  - sin bordes incómodos,
-  - sin offsets heredados del layout antiguo.
-- Eliminar estilos restantes de la versión “centrada” que afectan el tamaño.
-- Dejar la UI moderna y con “sensación de web-app”, similar a Notion y ChatGPT.
+**Objetivo:** unificar control del drawer y bloquear scroll en mobile.  
+**Notas:** detalle completo en `CHECKLIST.md` (Sprint 007).
 
 ---
 
-n este sprint vamos a dejar pulido también cómo se ve al apretar F11.
-O sea: botón de fullscreen real + buena vista cuando entras/sales a fullscreen.
+## 📅 Sprint 008 — Fine-Tuning Fullscreen Layout
 
-Te dejo todo armado en formato .md, con código listo para copiar/pegar.
+**Estado:** 🧪 En pruebas / pendiente de cierre  
+**Fecha:** 2025-01-XX
 
-# 🧩 Sprint 009 — Fullscreen Real (F11-like) + Polish visual
-
-## 🎯 Objetivo
-
-- Agregar un botón de **pantalla completa real** (API `requestFullscreen`), tipo F11.
-- Permitir entrar/salir de fullscreen desde la propia app.
-- Mantener el icono del botón sincronizado con el estado (normal / fullscreen).
-- Asegurar que **al apretar F11**:
-  - el layout se siga viendo bien (sin bordes raros, sin offsets),
-  - sidebar y contenido mantengan proporción,
-  - los paddings sigan siendo cómodos.
-- Integrar este comportamiento con el fullscreen layout ya trabajado en los sprints anteriores.
+**Objetivo:** pulir paddings, alturas, scroll y “feeling web-app” (Notion/ChatGPT).  
+**Notas:** checklist detallado en `CHECKLIST.md` (Sprint 008).
 
 ---
 
-## 📅 Sprint 006 — Modularización del JavaScript
+## 📅 Sprint 009 — Fullscreen Real (API requestFullscreen) + Polish
 
 **Estado:** 🕐 Pendiente  
-**Objetivo:** Separar completamente `main.js` en módulos atómicos.
+**Fecha:** 2025-01-XX
 
-### Módulos previstos:
-
-- `sidebar.js`
-- `scroll.js`
-- `theme.js`
-- `render.js`
-- `data.js`
+**Objetivo:** botón fullscreen real tipo F11 + sincronización por `fullscreenchange`.  
+**Notas:** checklist detallado en `CHECKLIST.md` (Sprint 009).
 
 ---
 
-## 📅 Sprint 007 — Optimización del Performance
+## 📅 Sprint 010 — Optimización de Performance
 
-**Estado:** 🕐 Pendiente  
-**Objetivo:**
+**Estado:** 🌱 Sugerido / futuro posible  
+**Fecha:** -
 
-- Lazy-loading del contenido
+### 🎯 Objetivo
+
+- Lazy-load de imágenes / contenido pesado
 - Menos repaints
-- CSS minificado
-- Evaluación del DOM cost
+- CSS/JS minificado (si se agrega pipeline)
+- Evaluación de costo DOM/listeners
 
 ---
 
-## 📅 Sprint 008 — Accesibilidad y SEO
+## 📅 Sprint 011 — Accesibilidad & SEO
 
-**Estado:** 🕐 Pendiente  
-**Objetivo:**
+**Estado:** 🌱 Sugerido / futuro posible  
+**Fecha:** -
 
-- ARIA Roles
-- Tabindex ordenado
-- Contrastes WCAG
-- Meta tags SEO
+### 🎯 Objetivo
+
+- Navegación teclado
+- Contraste WCAG real en dark mode
+- Roles semánticos + landmarks
+- Meta tags SEO básicos
 
 ---
 
-## 📅 Sprint 009 — Refactorización del CSS
+## 📅 Sprint 012 — Refactor CSS (Componentización)
 
-**Estado:** 🕐 Pendiente  
-**Objetivo:**
+**Estado:** 🌱 Sugerido / futuro posible  
+**Fecha:** -
 
-- Separar CSS en componentes
-- BEM o Utility Classes
+### 🎯 Objetivo
+
+- Separar CSS por componentes (sidebar, cards, layout, utils)
 - Limpieza de duplicados
+- Estándar consistente (sin “div soup” de estilos)
 
 ---
 
-## 📅 Sprint 010 — Refactorización del HTML
+## 📅 Sprint 013 — Refactor HTML (Semántica & Orden)
 
-**Estado:** 🕐 Pendiente  
-**Objetivo:**
+**Estado:** 🌱 Sugerido / futuro posible  
+**Fecha:** -
 
-- Semántica
+### 🎯 Objetivo
+
+- Mejor semántica (nav/main/aside/section)
 - Estructura optimizada
-- Menos “div soup”
+- Menos wrappers innecesarios
 
 ---
 
-## 📅 Sprint 011 — Migración a JS Modules (import/export)
+## 📅 Sprint 014 — Migración a JS Modules (import/export)
 
-**Estado:** 🕐 Pendiente  
-**Objetivo:**
+**Estado:** 🌱 Sugerido / futuro posible  
+**Fecha:** -
 
-- Estructura ESM profesional
-- Archivos interconectados
-- Preparación para builds futuras
+### 🎯 Objetivo
 
----
-
-## 📅 Sprint 012 — Preparación para app React (a futuro)
-
-**Estado:** 🕐 Pendiente  
-**Objetivo:**
-
-- Extraer datos y UI a JSON para reutilizar
-- Crear arquitectura portable
-- Dejar el proyecto listo para migración a un frontend framework
+- ESM profesional
+- Archivos interconectados con imports claros
+- Preparación para build futuro (si se decide)
 
 ---
 
-# 📌 Estado general del proyecto
+## 📅 Sprint 015 — Preparación para app React (a futuro)
+
+**Estado:** 🌱 Sugerido / futuro posible  
+**Fecha:** -
+
+### 🎯 Objetivo
+
+- Extraer datos/UI a JSON para reutilizar
+- Arquitectura portable
+- Base sólida para migración a framework
+
+---
+
+## 📌 Estado general del proyecto
 
 | Sprint | Estado |
 | ------ | ------ |
@@ -302,38 +260,40 @@ Te dejo todo armado en formato .md, con código listo para copiar/pegar.
 | 002    | ✔️     |
 | 003    | ✔️     |
 | 004    | 🔄     |
-| 005    | 🕐     |
-| 006    | 🕐     |
-| 007    | 🌱     |
-| 008    | 🌱     |
+| 004.5  | ✔️     |
+| 005    | ✔️     |
+| 006    | ✔️     |
+| 007    | ✔️     |
+| 008    | 🧪     |
 | 009    | 🕐     |
 | 010    | 🌱     |
 | 011    | 🌱     |
 | 012    | 🌱     |
+| 013    | 🌱     |
+| 014    | 🌱     |
+| 015    | 🌱     |
 
-| Icono | Estado                        | Significado                                                         |
-| ----- | ----------------------------- | ------------------------------------------------------------------- |
-| ✔️    | **Completado**                | El sprint está terminado y validado. No requiere más trabajo.       |
-| 🔄    | **En progreso**               | El sprint está activo: se está construyendo o ajustando.            |
-| 🕐    | **Pendiente**                 | Sprint planificado pero aún no iniciado.                            |
-| 🧩    | **Parcial / En revisión**     | Sprint parcialmente implementado, en espera de revisión o refactor. |
-| ⚠️    | **Bloqueado**                 | No avanza por dependencia externa o decisión pendiente.             |
-| 🚧    | **En mantenimiento**          | Sprint ya completado que está siendo optimizado o corregido.        |
-| 🧪    | **En pruebas**                | Sprint finalizado funcionalmente pero en evaluación QA/UX.          |
-| 🌱    | **Sugerido / Futuro posible** | Sprint tentativo, ideal para backlog a largo plazo.                 |
-| 🔥    | **Alta prioridad**            | Sprint urgente o crítico para la estructura del proyecto.           |
+| Icono | Estado                        | Significado                                             |
+| ----- | ----------------------------- | ------------------------------------------------------- |
+| ✔️    | **Completado**                | Sprint terminado y validado.                            |
+| 🔄    | **En progreso**               | Sprint activo (construcción/ajuste).                    |
+| 🕐    | **Pendiente**                 | Sprint planificado no iniciado.                         |
+| 🧩    | **Parcial / En revisión**     | Parcialmente implementado; requiere revisión/refactor.  |
+| ⚠️    | **Bloqueado**                 | No avanza por dependencia externa o decisión pendiente. |
+| 🚧    | **Mantenimiento**             | Completado pero optimizándose/corrigiéndose.            |
+| 🧪    | **En pruebas**                | Funcionalmente listo, en QA/UX antes de cerrar.         |
+| 🌱    | **Sugerido / Futuro posible** | Tentativo, backlog a largo plazo.                       |
+| 🔥    | **Alta prioridad**            | Sprint crítico/urgente para estructura del proyecto.    |
 
 ---
 
-# 📌 Cómo agregar nuevos sprints
-
-Copiar esta plantilla:
+## 📌 Cómo agregar nuevos sprints (plantilla)
 
 ```md
 ## 📅 Sprint XXX — Título
 
 **Estado:** 🕐  
-**Fecha:**
+**Fecha:** YYYY-MM-DD (o 2025-01-XX)
 
 ### 🎯 Objetivos
 

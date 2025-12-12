@@ -1,228 +1,312 @@
-# 🧩 Sprint X — Mejores Prácticas Globales del Proyecto  
-**Documento permanente — Consultar antes de iniciar cualquier sprint o refactor**
+<!-- ===================================================================== -->
+<!-- FILE: SPRINT-BEST-PRACTICE.md                                          -->
+<!-- ===================================================================== -->
+
+# 🧩 SprintLibroWeb — Mejores Prácticas Globales del Proyecto
+
+**Documento permanente — Consultar antes de iniciar cualquier sprint, refactor o cambio estructural.**  
+Este archivo define las reglas maestras para mantener el proyecto **ordenado, consistente, escalable y mantenible**.
 
 ---
 
-# 🎯 1) Objetivo del Sprint
+## ✅ Estado actual del proyecto (Qué quedó OK y corregido)
 
-Establecer un conjunto de **reglas maestras** que garanticen:
+✔️ Estructura base del repo creada y operativa (docs + capítulos + assets).  
+✔️ Sidebar mobile funcional (drawer + overlay).  
+✔️ Theme toggle (light/dark) funcional y persistente (localStorage).  
+✔️ Render dinámico de capítulos/sprints desde `docs/js/data/`.  
+✔️ Botón “volver arriba” funcional (pendiente de rename si aplica).  
+✔️ Documentación base creada: `CHECKLIST.md`, `STYLE-GUIDE.md`, `CHANGELOG.md`, `commits.md`.
 
-- orden  
-- consistencia  
-- escalabilidad  
-- mantenibilidad técnica  
-- crecimiento sostenible del proyecto  
-
-Este archivo centraliza TODO lo que debes revisar antes de crear nuevos módulos, nuevas pantallas o aplicar refactor.
+> Nota: lo “OK” aquí significa **funciona y está validado visual/funcionalmente**. Lo pendiente vive en `CHECKLIST.md` y en el backlog de sprints.
 
 ---
 
-# 📁 2) Organización general del proyecto
+## 🎯 1) Objetivo del documento
+
+Establecer reglas maestras que garanticen:
+
+- orden
+- consistencia
+- escalabilidad
+- mantenibilidad técnica
+- crecimiento sostenible del proyecto
+
+Este documento centraliza **todo lo que debes revisar** antes de crear nuevos módulos, nuevas pantallas o aplicar refactors.
+
+---
+
+## 📁 2) Organización general del proyecto
 
 ### ✔️ Reglas base
-- Toda carpeta y archivo debe responder a un **propósito claro**.  
-- Nada debe existir “por si acaso”.
+
+- Cada carpeta/archivo debe responder a un **propósito claro**.
+- Nada existe “por si acaso”.
 - Mínimo acoplamiento entre módulos.
-- Código fácil de leer sin necesidad de explicaciones extra.
+- Código legible sin explicaciones extra.
+- Si una decisión afecta al proyecto “para siempre”, se documenta aquí.
 
-### ✔️ Estructura oficial del proyecto
-(Reflejada en `README.md` y mantenida siempre actualizada)
+### ✔️ Estructura oficial del repo (referencia)
 
-```
+> Mantener coherente con `README.md`. Si cambia el repo, se actualiza aquí y en README.
+
+```txt
 docs/
   01junior/
   02midLevel/
   03master/
-      assets/
-      css/
-      js/
-          data/
-          modules (futuro)
-      index.html
+  assets/
+    img/
+  css/
+    style.css
+  js/
+    data/
+    main.js
+    sidebar.js
+    theme.js
+    scroll.js
+  index.html
+
 CHANGELOG.md
 CHECKLIST.md
 commits.md
 STYLE-GUIDE.md
-SPRINT-BEST-PRACTICES.md
+SPRINT-BEST-PRACTICE.md
 README.md
 ```
 
+### ✔️ Convenciones de nombres (regla práctica)
+
+- JS: `camelCase` (variables/funciones) + `PascalCase` (clases).
+- CSS: `kebab-case`.
+- Archivos: sin typos (ej: `scroll.js`, nunca `scrooll.js`).
+- Documentos: mantener nombres exactos:
+  - `SPRINT-BEST-PRACTICE.md` (singular y consistente)
+  - `CHECKLIST.md`
+  - `sprintLibroWeb.md`
+
 ---
 
-# 💾 3) Versionado y commits
+## 💾 3) Versionado y commits
 
-### ✔️ Atomic Commits (Regla de Oro)
+### ✔️ Atomic Commits (regla de oro)
+
 Cada commit debe:
+
 - hacer **una sola cosa**
 - ser fácil de revertir
-- tener un mensaje claro y profesional
+- tener mensaje claro y profesional
 - actualizar `commits.md` o `CHANGELOG.md` cuando corresponda
 
 ### ✔️ Formato recomendado
-```
+
+```txt
 feat(ui): mejorar sidebar en mobile
 fix(css): corregir overflow en tarjetas
 refactor(js): separar lógica de scroll en módulo propio
 docs: actualizar README con estructura nueva
+chore: limpieza de nombres y estructura
 ```
 
-### ✔️ Prohibido:
-- commits gigantes (tipo “update all”)
+### 🚫 Prohibido
+
+- commits gigantes (“update all”)
 - mezclar UI + lógica en un mismo commit
-- subir código sin probarlo antes
+- subir código sin probar (desktop + mobile)
 
 ---
 
-# 🧱 4) Estructura de módulos (JavaScript)
+## 🧱 4) Estructura de módulos (JavaScript)
 
 ### ✔️ Reglas generales
-- Cada archivo JS debe resolver *una única responsabilidad*.
-- Si un archivo supera **200–250 líneas**, debe dividirse.
-- Todo módulo debe comenzar con:
+
+- Cada archivo JS resuelve **una única responsabilidad**.
+- Si un archivo supera **200–250 líneas**, se divide.
+- Todo módulo comienza con encabezado:
 
 ```js
 /**
- * Nombre del archivo
- * Propósito
- * Funciones incluidas
- * Dependencias
+ * Archivo: <nombre>
+ * Propósito: <qué resuelve>
+ * Exporta/Expone: <funciones>
+ * Dependencias: <qué usa>
  */
 ```
 
-### ✔️ Archivos actuales
-- `main.js` → orquestación general  
-- `sidebar.js` → menú móvil  
-- `theme.js` → modo oscuro/claro  
-- `scroll.js` → botón volver arriba  
-- `data/*.js` → datos estáticos del proyecto  
+### ✔️ Módulos actuales (referencia)
+
+- `main.js` → orquestación/render general
+- `sidebar.js` → lógica de menú/drawer + overlay
+- `theme.js` → modo oscuro/claro + persistencia
+- `scroll.js` → volver arriba (y lógica asociada)
+- `js/data/*.js` → datos estáticos (capítulos/sprints)
 
 ### ✔️ Futuro (cuando el proyecto crezca)
-```
+
+```txt
 js/
   modules/
     router.js
-    tocBuilder.js
+    tocGeneral.js
+    tocSprint.js
     renderSprints.js
+    utils.js
 ```
 
 ---
 
-# 🎨 5) Organización del CSS
+## 🎨 5) Organización del CSS
 
 ### ✔️ Reglas clave
-- No usar selectores profundos.  
-- No usar IDs para estilo, sólo para JS.  
-- Todo color va en variables CSS `--var`.  
-- Usar dos capas:  
-  **1) tokens:** colores, bordes, z-index  
-  **2) componentes:** sidebar, cards, botones  
 
-### ✔️ Orden recomendado dentro del CSS
-1. variables  
-2. resets  
-3. layout general  
-4. componentes (sidebar, cards, header…)  
-5. utilidades  
-6. media queries  
+- Evitar selectores profundos.
+- No usar IDs para estilo (IDs solo para JS).
+- Colores y valores globales en variables `:root { --var }`.
+- Separar:
+  1. **tokens** (colores, bordes, z-index, sombras)
+  2. **componentes** (sidebar, cards, botones)
+
+### ✔️ Orden recomendado en `style.css`
+
+1. variables (tokens)
+2. resets
+3. layout general
+4. componentes
+5. utilidades
+6. media queries
 
 ---
 
-# 🔍 6) Refactor atómico
+## 🔍 6) Refactor atómico
 
 Cada refactor debe:
-- ser pequeño  
-- no romper nada ya funcional  
-- incluir una prueba manual o automática  
-- actualizar documentación si cambia algo del comportamiento
+
+- ser pequeño
+- no romper lo ya funcional
+- incluir prueba manual (mínimo) o automática (si aplica)
+- actualizar documentación si cambia comportamiento
 
 Ejemplos de refactor atómico:
-- mover un listener a otro archivo  
-- simplificar una función  
-- reducir un selector CSS  
-- extraer bloques repetidos en funciones reutilizables  
+
+- mover un listener a otro módulo
+- simplificar una función
+- reducir un selector CSS
+- extraer repetidos a helpers reutilizables
 
 ---
 
-# 🧪 7) Micro-testing manual
-
-Antes de cerrar un sprint, revisar SIEMPRE:
+## 🧪 7) Micro-testing manual (antes de cerrar sprint)
 
 ### ✔️ Sidebar
-- abre / cierra correctamente  
-- overlay funciona  
-- TOC se puede hacer scroll  
-- el botón no tapa contenido  
 
-### ✔️ Diseño responsive
-- 900px  
-- 768px  
-- 600px  
-- modo claro / oscuro  
+- abre/cierra correctamente
+- overlay funciona y es clicable
+- TOC hace scroll sin romper layout
+- el botón no tapa contenido
+
+### ✔️ Responsive (mínimo)
+
+- 900px
+- 768px
+- 600px
+- tema claro / oscuro
 
 ### ✔️ Accesibilidad base
-- todos los botones tienen `aria-label`  
-- touch-friendly (mínimo 40×40 px)  
-- contraste correcto  
+
+- botones con `aria-label`
+- touch-friendly (mínimo 40×40)
+- contraste correcto
 
 ---
 
-# 🛑 8) Lista de “NO HACER”
+## 🛑 8) Lista de NO HACER
 
 ❌ no usar estilos inline  
 ❌ no meter CSS dentro del JS  
 ❌ no dejar comentarios inútiles  
-❌ no subir código que no has probado en mobile  
+❌ no subir código sin probar en mobile  
 ❌ no ignorar warnings del inspector  
-❌ no mantener código muerto “por si sirve”  
+❌ no mantener código muerto “por si sirve”
 
 ---
 
-# 📚 9) Documentación obligatoria por sprint
+## 📚 9) Documentación obligatoria por sprint
 
 Cada sprint debe contener:
 
-- Objetivo del sprint  
-- Explicación profesional  
-- Código relevante formateado  
-- Antes / después si aplica  
-- Tareas realizadas  
-- Mini checklist final  
-
-*Esto mantiene la evolución del proyecto clara y consultable.*
+- objetivo
+- explicación profesional
+- código relevante formateado
+- antes/después si aplica
+- tareas realizadas
+- mini checklist final
 
 ---
 
-# 🧭 1️⃣0️⃣ Revisión previa antes de abrir un nuevo sprint
+## 🧭 10) Revisión previa antes de abrir un sprint
 
-Antes de avanzar, SIEMPRE revisa:
+Antes de avanzar, revisa:
 
-- [ ] ¿El código está formateado (Prettier)?  
-- [ ] ¿La estructura del repo sigue intacta?  
-- [ ] ¿El último sprint quedó completamente cerrado?  
-- [ ] ¿El diseño móvil está correcto?  
-- [ ] ¿El README está actualizado?  
-- [ ] ¿Este cambio merece su propio commit?  
+- [ ] ¿Código formateado (Prettier/estilo consistente)?
+- [ ] ¿Estructura del repo intacta?
+- [ ] ¿Último sprint cerrado y documentado?
+- [ ] ¿Mobile OK (900/768/600)?
+- [ ] ¿README / CHECKLIST / CHANGELOG al día?
+- [ ] ¿Este cambio merece su propio commit atómico?
 
-Si **2 o más casillas están en “no”**, no abras un sprint nuevo.
-
----
-
-# 🏁 1️⃣1️⃣ Conclusión
-
-Este documento funciona como tu **mapa de referencia** para toda la vida del proyecto.
-
-Debe leerse antes de:
-
-✔️ comenzar un sprint  
-✔️ refactorizar  
-✔️ hacer cambios estructurales  
-✔️ trabajar UI/UX  
-✔️ dividir módulos  
-
-Mantener este archivo actualizado garantizará que SprintLibroWeb crezca **limpio, profesional y escalable**.
+> Si **2 o más** están en “no”, no abras sprint nuevo.
 
 ---
 
-# 📌 Última nota
-Si en algún sprint aparece una nueva práctica que el proyecto adopta de forma oficial, se agrega AQUÍ.
+## 🏁 11) Conclusión
 
+Este documento es el mapa de referencia del proyecto.  
+Debe leerse antes de: iniciar sprint, refactorizar, cambiar estructura, trabajar UI/UX, dividir módulos.
+
+---
+
+## 📎 Apéndice A — Sprint Plantilla (PoC) Migración SPA + Doble menú
+
+> Esto no es “best practice” por sí mismo: es una **iniciativa arquitectónica**.  
+> Se deja aquí como referencia oficial porque afecta decisiones globales.
+
+### 🎯 Objetivo del Sprint (PoC)
+
+Implementar una base SPA (sin recarga) que permita:
+
+- Mantener fullscreen y estado UI (theme, botones flotantes, sidebar) entre navegación.
+- Soportar 2 niveles de navegación:
+  1. índice general (capítulos + lista de sprints)
+  2. índice del sprint (secciones internas del sprint)
+- Probar con 1 sprint como Proof of Concept.
+- Dejar listo para escalar a múltiples capítulos/sprints.
+
+### ✅ Alcance (Sí incluye)
+
+- Router mínimo con `history.pushState()` y `popstate`.
+- Shell único (`docs/index.html`) + contenedor dinámico `#appView`.
+- Sprint PoC convertido a partial (solo contenido).
+- Doble TOC:
+  - `toc-general` siempre visible
+  - `toc-sprint` solo cuando hay sprint cargado
+- Botones flotantes viven en Shell y nunca se duplican en partials.
+
+### 🚫 Fuera de alcance (por ahora)
+
+- Migrar todos los sprints a partials (solo 1 PoC).
+- Search / tags / progreso por sprint.
+- React / Sass.
+
+### 📦 Definition of Done
+
+1. `docs/index.html` funciona como Shell único.
+2. `docs/js/router.js` navega sin recargar.
+3. `docs/02midLevel/partials/<sprint>.partial.html` se inyecta en `#appView`.
+4. Sidebar muestra:
+   - TOC general siempre
+   - TOC sprint solo cuando corresponde
+5. Fullscreen no se pierde al navegar (no hay recarga).
+6. Botones flotantes siempre funcionales.
+7. Commit atómico y reversible.
+
+---

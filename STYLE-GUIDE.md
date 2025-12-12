@@ -1,26 +1,44 @@
-# 🎨 STYLE-GUIDE.md  
+# 🎨 STYLE-GUIDE.md
+
 **Guía oficial de estilo del proyecto SprintLibroWeb**  
-*(Consistencia, orden y escalabilidad para docs y demo master)*  
+_(Consistencia, orden y escalabilidad para docs y demo master)_
 
 ---
 
-# 1️⃣ Objetivo del documento
-Este documento define **todas las reglas oficiales** de:
+## ✅ Estado del documento (actualizado)
 
-- Estructura del proyecto  
-- Nomenclatura de archivos y carpetas  
-- Estándares CSS / JS / HTML  
-- Arquitectura de módulos  
-- Responsiveness  
-- Accesibilidad  
-- Documentación interna  
-- Buenas prácticas de desarrollo  
+✔️ Nomenclatura y estructura normalizadas  
+✔️ Paleta claro/oscuro oficial definida  
+✔️ Arquitectura CSS y JS coherente con CHECKLIST  
+✔️ **Tipografía global definida (NUEVO)**  
+✔️ **Reglas UX responsive por breakpoint (NUEVO)**
 
-Es la base para asegurar que el proyecto crezca ordenado mientras avanzamos sprint por sprint.
+Este documento cubre directamente los pendientes:
+
+- Ajustes de tipografía global
+- Revisión UX en 900 / 768 / 600
 
 ---
 
-# 2️⃣ Estructura real del proyecto (oficial)
+## 1️⃣ Objetivo del documento
+
+Definir **todas las reglas oficiales** de:
+
+- Estructura del proyecto
+- Nomenclatura de archivos y carpetas
+- Estándares CSS / JS / HTML
+- Arquitectura de módulos
+- Tipografía y jerarquía visual
+- Responsive design y UX
+- Accesibilidad
+- Documentación interna
+- Buenas prácticas de desarrollo
+
+Es la base para asegurar que el proyecto crezca ordenado sprint por sprint.
+
+---
+
+## 2️⃣ Estructura real del proyecto (oficial)
 
 ```
 docs/
@@ -35,7 +53,7 @@ docs/
       js/
           data/
           main.js
-          scrooll.js
+          scroll.js
           sidebar.js
           theme.js
       index.html
@@ -44,60 +62,100 @@ CHANGELOG.md
 CHECKLIST.md
 commits.md
 README.md
-SPRINT-BEST-PRACTICES.md
+SPRINT-BEST-PRACTICE.md
 STYLE-GUIDE.md
 ```
 
-⭐ *Esta es la estructura oficial. Toda nueva funcionalidad debe respetarla.*
+⭐ Toda nueva funcionalidad debe respetar esta estructura.
 
 ---
 
-# 3️⃣ Convenciones de nombres
+## 3️⃣ Convenciones de nombres
 
-## ✔️ Archivos y carpetas
-| Tipo | Regla | Ejemplo |
-|------|--------|---------|
-| carpetas | kebab-case (excepto docs) | `assets/icons/`, `03master/js/` |
-| html | nombre descriptivo | `index.html`, `domAvanzado.html` |
-| css | kebab-case | `style.css` |
-| js | camelCase para archivos funcionales | `sidebar.js`, `theme.js` |
-| datos | carpetas internas organizadas | `js/data/sprints.js` |
+### ✔️ Archivos y carpetas
 
----
+| Tipo     | Regla       | Ejemplo              |
+| -------- | ----------- | -------------------- |
+| carpetas | kebab-case  | `assets/icons/`      |
+| html     | descriptivo | `index.html`         |
+| css      | kebab-case  | `style.css`          |
+| js       | camelCase   | `sidebar.js`         |
+| datos    | organizados | `js/data/sprints.js` |
 
-## ✔️ JavaScript (variables, funciones, módulos)
-| Elemento | Estilo | Ejemplo |
-|----------|---------|---------|
-| variables | camelCase | `currentTheme` |
-| funciones | verbo + camelCase | `toggleSidebar()` |
-| clases DOM | kebab-case | `"sidebar-open"` |
-| constantes | MAYÚSCULAS | `DEFAULT_THEME = "light"` |
+### ✔️ JavaScript
 
----
+| Elemento   | Estilo            | Ejemplo           |
+| ---------- | ----------------- | ----------------- |
+| variables  | camelCase         | `currentTheme`    |
+| funciones  | verbo + camelCase | `toggleSidebar()` |
+| constantes | MAYÚSCULAS        | `DEFAULT_THEME`   |
+| clases DOM | kebab-case        | `"sidebar-open"`  |
 
-## ✔️ CSS
-| Elemento | Regla | Ejemplo |
-|----------|--------|---------|
-| clases | kebab-case | `.sidebar-header` |
-| variables CSS | --kebab-case | `--accent-soft` |
+### ✔️ CSS
 
-**Reglas clave:**
+| Elemento  | Regla        | Ejemplo         |
+| --------- | ------------ | --------------- |
+| clases    | kebab-case   | `.sprint-card`  |
+| variables | --kebab-case | `--accent-soft` |
 
-✔️ nombres **semánticos**, no visuales  
+✔️ Nombres semánticos  
 ❌ `.blue-card`  
 ✔️ `.sprint-card`
 
-✔️ evitar selectores profundos  
-❌ `.sidebar .header .wrap .title span`  
-✔️ `.sidebar-title`
+---
+
+## 4️⃣ Tipografía global (OFICIAL)
+
+### 📌 Familia base
+
+```
+font-family: system-ui, -apple-system, BlinkMacSystemFont,
+             "Segoe UI", Roboto, Inter, sans-serif;
+```
+
+### 📐 Escala tipográfica base (desktop ≥ 900px)
+
+| Elemento    | Tamaño  |
+| ----------- | ------- |
+| body        | 16px    |
+| h1          | 2.1rem  |
+| h2          | 1.6rem  |
+| h3          | 1.25rem |
+| p           | 1rem    |
+| small       | 0.85rem |
+| code inline | 0.9em   |
+
+### 📱 Ajustes tipográficos responsive
+
+#### ≤ 900px
+
+- `h1` → 1.9rem
+- `h2` → 1.45rem
+- Sidebar con texto ligeramente más compacto
+
+#### ≤ 768px
+
+- `h1` → 1.7rem
+- `h2` → 1.35rem
+- `p` mantiene 1rem (no bajar legibilidad)
+
+#### ≤ 600px
+
+- `h1` → 1.55rem
+- `h2` → 1.25rem
+- `p` → 0.95rem
+- `line-height` mínimo: 1.55
+
+✔️ Nunca bajar texto base de lectura bajo 15px efectivos.
 
 ---
 
-# 4️⃣ Guía visual (CSS)
+## 5️⃣ Guía visual (CSS)
 
-## 🌈 Paleta de colores
+### 🌈 Paleta de colores
 
-### ✨ Tema claro
+#### Tema claro
+
 ```
 --bg: #f5f5f7
 --bg-alt: #ffffff
@@ -107,7 +165,8 @@ STYLE-GUIDE.md
 --chapter-bg: #f8fafc
 ```
 
-### 🌙 Tema oscuro
+#### Tema oscuro
+
 ```
 --bg: #020617
 --bg-alt: #020617
@@ -119,140 +178,96 @@ STYLE-GUIDE.md
 
 ---
 
-## 📐 Bordes y radios
-- tarjetas → `16px`  
-- contenedores → `20px – 32px`  
-- botones circulares → `999px`  
+## 6️⃣ Spacing y aire visual
+
+| Elemento             | Valor        |
+| -------------------- | ------------ |
+| sidebar padding      | 1.25–1.75rem |
+| toc link             | 0.45–0.7rem  |
+| sprint-card          | 1–1.2rem     |
+| chapter-group        | 1.2–1.5rem   |
+| main-content padding | 2.4–3rem     |
+
+✔️ El contenido debe “respirar” incluso en fullscreen.
 
 ---
 
-## 📏 Spacing oficial
-| Elemento | Espaciado |
-|---------|-----------|
-| `.sidebar` | `1.25rem – 1.75rem` |
-| `.toc a` | `0.45rem – 0.70rem` |
-| `.sprint-card` | `1.0rem – 1.2rem` |
-| `.chapter-group` | `1.2rem – 1.5rem` |
+## 7️⃣ Responsive UX (REGLAS CLAVE)
+
+### Breakpoints oficiales
+
+```
+≤ 900px → mobile + sidebar drawer tipo GPT
+≤ 768px → layout compacto, cards 1 columna
+≤ 600px → foco en lectura + pulgar
+```
+
+### Reglas UX obligatorias
+
+✔️ No doble scrollbar  
+✔️ Botones flotantes no se superponen  
+✔️ Sidebar siempre cerrable (overlay / Esc)  
+✔️ Padding mínimo tocable: 12–16px  
+✔️ Nada crítico queda fuera de viewport
 
 ---
 
-# 5️⃣ Responsive design
-
-### 🔹 Breakpoints oficiales
-```
-@media (max-width: 900px) → mobile + sidebar tipo GPT  
-@media (max-width: 768px) → tarjetas a 1 columna  
-@media (max-width: 600px) → ajustes tipográficos + botones  
-```
-
-### Reglas
-✔️ El sidebar móvil **solo se controla desde 900px**  
-✔️ Cada breakpoint modifica solo lo necesario  
-✔️ Deben documentarse cambios importantes en este archivo  
-
----
-
-# 6️⃣ JavaScript: arquitectura por módulos
-
-Tu estructura actual:
+## 8️⃣ JavaScript: arquitectura por módulos
 
 ```
-main.js        → lógica general
-sidebar.js     → menú lateral móvil + overlay
-theme.js       → modo claro/oscuro + localStorage
-scrooll.js     → botón "volver arriba" + efectos de scroll
-js/data/       → datos del proyecto (TOC, sprints, metadatos)
+main.js    → orquestación/render
+sidebar.js → drawer + overlay
+theme.js   → light/dark
+scroll.js  → back to top
+js/data/   → datos del proyecto
 ```
 
----
+### Encabezado obligatorio en cada JS
 
-### ✔️ Encabezado obligatorio en cada archivo JS
-
-\`\`\`js
+```js
 /**
  * sidebar.js
- * Control del menú lateral móvil tipo ChatGPT
- * - Toggle
- * - Overlay
- * - Cerrar al seleccionar sprint
+ * Control del menú lateral móvil
  */
-\`\`\`
+```
+
+✔️ Si una función se repite → `utils.js`.
 
 ---
 
-### ✔️ No duplicar lógica
-Si una función se repite → mover a `utils.js` (se creará cuando haya suficientes funciones).
+## 9️⃣ Accesibilidad
+
+✔️ `aria-label` obligatorio  
+✔️ Área mínima clic: 40×40  
+✔️ Contraste válido en ambos temas  
+⏳ Navegación teclado → sprint futuro
 
 ---
 
-### ✔️ Todo acceso al DOM debe ejecutarse dentro de:
+## 🔟 Atomic commits
 
-\`\`\`js
-document.addEventListener("DOMContentLoaded", () => {
-  // ...
-});
-\`\`\`
-
----
-
-# 7️⃣ Accesibilidad
-
-✔️ Todos los botones con `aria-label`  
-✔️ Área mínima clickeable: `40px × 40px`  
-✔️ Contrastes revisados para claro/oscuro  
-✔️ Interacción con teclado → *Pendiente, sprint futuro*  
-
----
-
-# 8️⃣ Reglas de documentación interna
-
-Cada archivo CSS/JS debe incluir:
-
-- Nombre del módulo  
-- Propósito  
-- Funciones principales  
-- Dependencias internas si las hay  
+✔️ Un objetivo por commit  
+✔️ No mezclar UI + lógica  
+✔️ Documentar en `commits.md`
 
 Ejemplo:
 
-\`\`\`js
-// theme.js
-// Controla el tema claro/oscuro del sitio
-// - Guarda preferencia en localStorage
-// - Aplica variables CSS dinámicamente
-\`\`\`
-
----
-
-# 9️⃣ Atomic commits (regla oficial)
-
-✔️ Cambios pequeños  
-✔️ Objetivo único por commit  
-✔️ No mezclar UI + lógica  
-✔️ Documentar cada commit en `commits.md`  
-✔️ Mensaje en formato convencional:
-
-Ejemplo real:
-
 ```
-feat(ui): ampliar área del menú lateral en mobile y optimizar paddings
+feat(ui): ajustar escala tipográfica y espaciados responsive
 ```
 
 ---
 
-# 🔟 Conclusión
+## 🏁 Conclusión
 
-Este STYLE-GUIDE.md define los **estándares oficiales del proyecto SprintLibroWeb**.
+Este STYLE-GUIDE.md es la **constitución visual y técnica** del proyecto.
 
-Seguirlo garantiza:
+Si surge una duda de:
 
-- Orden  
-- Escalabilidad  
-- Clean code  
-- Documentación consistente  
-- Flujo profesional de desarrollo  
-- Continuidad entre sprints  
+- tamaños
+- colores
+- UX
+- responsive
+- estructura
 
-Siempre que agregues algo nuevo, vuelve aquí.  
-Este archivo es la **constitución del proyecto** ⚡
-
+👉 la respuesta vive aquí.

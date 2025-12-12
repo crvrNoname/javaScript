@@ -4,7 +4,7 @@
 // ===========================================
 
 import { sprintsMidLevelDaltoPlus } from './data/sprintsMidLevel.js'
-import { initViewportDebug } from './utils/viewportDebug.js' // Importamos módulo de diagnóstico de viewport
+// import { initViewportDebug } from './utils/viewportDebug.js' // Importamos módulo de diagnóstico de viewport
 
 // =========================
 // 1) RENDER DEL ÍNDICE PRINCIPAL
