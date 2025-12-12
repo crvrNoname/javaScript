@@ -1,3 +1,9 @@
+<!-- ============================================
+  📄 Archivo: /docs/index.html
+  Descripción: Página principal del Libro Web "Roadmap Mid Level JavaScript — Dalto⁺"
+  Estructura validada, semántica y optimizada para JS modular.
+=============================================== -->
+
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
 <head>
@@ -6,18 +12,24 @@
 
   <title>Roadmap Mid Level JavaScript — Dalto⁺</title>
 
+  <!-- CSS GLOBAL -->
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 
-<!-- 👇 Clase para activar el layout fullscreen desde CSS -->
 <body class="layout-fullscreen">
-  <!-- BOTÓN MODO OSCURO -->
+
+  <!-- 🌙 BOTÓN MODO OSCURO -->
   <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
     <span class="icon">🌙</span>
     <span class="label">Modo oscuro</span>
   </button>
 
-  <!-- BOTÓN MENÚ (mobile, tipo GPT) -->
+  <!-- ⛶ FULLSCREEN REAL -->
+  <button id="fullscreenToggle" class="fullscreen-toggle" aria-label="Pantalla completa">
+    ⛶
+  </button>
+
+  <!-- ☰ MENÚ MOBILE -->
   <button id="menuToggle" class="menu-toggle" aria-label="Abrir índice">
     ☰
   </button>
@@ -25,21 +37,24 @@
   <!-- OVERLAY PARA MOBILE -->
   <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
-  <!--
-    .shell se va a convertir en contenedor fullscreen (flex)
-    sin max-width ni centrado en CSS.
-  -->
+  <!-- SHELL PRINCIPAL -->
   <div class="shell">
 
-    <!-- SIDEBAR -->
+    <!-- ============================
+         📚 SIDEBAR (Índice dinámico)
+    ===============================-->
     <aside class="sidebar" id="sidebar">
       <header class="sidebar-header">
+
         <div class="sidebar-title-wrap">
           <div class="sidebar-title">
             <span class="icon">📘</span>
             <span>Roadmap Mid Level JS</span>
           </div>
-          <p class="sidebar-subtitle">Índice dinámico por Sprints (Dalto⁺)</p>
+
+          <p class="sidebar-subtitle">
+            Índice dinámico por Sprints (Dalto⁺)
+          </p>
         </div>
 
         <div class="sidebar-toggle">
@@ -48,15 +63,18 @@
             <span class="label">Índice</span>
           </button>
         </div>
+
       </header>
 
-      <!-- ÍNDICE AUTOMÁTICO (PINTADO DESDE JS) -->
-      <ul class="toc" id="toc-dynamic"></ul>
+      <!-- ÍNDICE AUTOMÁTICO (inyectado desde JS) -->
+      <ul id="toc-dynamic" class="toc"></ul>
     </aside>
 
-    <!-- MAIN -->
-    <!-- 👇 Clase para aplicar el padding y el offset de la sidebar -->
+    <!-- ============================
+           🧠 CONTENIDO PRINCIPAL
+    ===============================-->
     <main class="main-content">
+
       <header>
         <h1>Roadmap Mid Level JavaScript</h1>
 
@@ -66,8 +84,10 @@
         </div>
       </header>
 
+      <!-- --- PROPÓSITO GENERAL --- -->
       <section id="proposito-general" class="chapter">
         <h2>Propósito general 🧭</h2>
+
         <p class="chapter-tag">
           Este libro web recopila y amplía el contenido del nivel Mid-Level de JavaScript
           basado en el curso de Dalto⁺, sumando explicaciones extra, ejemplos reales y
@@ -75,7 +95,7 @@
         </p>
       </section>
 
-      <!-- LISTA DINÁMICA DE SPRINTS -->
+      <!-- --- LISTA DINÁMICA DE SPRINTS --- -->
       <section class="chapter">
         <h2>Índice de Sprints</h2>
         <div id="sprints-container"></div>
@@ -84,7 +104,7 @@
     </main>
   </div>
 
-  <!-- BOTON SUBIR -->
+  <!-- 🡱 BOTÓN VOLVER ARRIBA -->
   <button id="backToTop" class="back-to-top" aria-label="Volver arriba">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -93,7 +113,7 @@
     </svg>
   </button>
 
-  <!-- CARGAMOS EL JS COMO MÓDULO -->
+  <!-- 🚀 JS PRINCIPAL (modular) -->
   <script type="module" src="./js/main.js"></script>
 
 </body>

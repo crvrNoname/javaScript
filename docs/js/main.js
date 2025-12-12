@@ -1,6 +1,10 @@
-// docs/js/main.js
+// ============================================
+// 📄 Archivo: /docs/js/main.js
+// Descripción: Lógica principal del Libro Web
+// ===========================================
 
 import { sprintsMidLevelDaltoPlus } from './data/sprintsMidLevel.js'
+import { initViewportDebug } from './utils/viewportDebug.js' // Importamos módulo de diagnóstico de viewport
 
 // =========================
 // 1) RENDER DEL ÍNDICE PRINCIPAL
@@ -143,35 +147,14 @@ function renderSidebarToc() {
 })()
 
 // =========================
-// 3) SIDEBAR MOBILE
+// 3) SIDEBAR MOBILE + DESKTOP
 // =========================
-// (function () {
-//   const sidebar = document.getElementById("sidebar");
-//   const sidebarToggle = document.getElementById("sidebarToggle");
-
-//   if (!sidebar || !sidebarToggle) return;
-
-//   sidebarToggle.addEventListener("click", () => {
-//     sidebar.classList.toggle("collapsed");
-//   });
-
-//   const tocLinks = sidebar.querySelectorAll(".toc a");
-//   tocLinks.forEach((link) => {
-//     link.addEventListener("click", () => {
-//       if (window.innerWidth <= 900) {
-//         sidebar.classList.add("collapsed");
-//       }
-//     });
-//   });
-// })();
-
-// ----- Sidebar tipo GPT en mobile (drawer unificado) -----
 ;(function () {
   const body = document.body
   const sidebar = document.getElementById('sidebar')
   const menuToggle = document.getElementById('menuToggle')
   const sidebarOverlay = document.getElementById('sidebarOverlay')
-  const innerToggle = document.getElementById('sidebarToggle') // botón dentro del header sidebar (opcional)
+  const innerToggle = document.getElementById('sidebarToggle') // botón dentro del header sidebar
 
   if (!sidebar || !menuToggle || !sidebarOverlay) return
 
@@ -187,8 +170,7 @@ function renderSidebarToc() {
     body.classList.remove(OPEN_CLASS)
   }
 
-  const toggleSidebar = () => {
-    if (!isMobile()) return // solo drawer en mobile
+  const toggleSidebarMobile = () => {
     if (body.classList.contains(OPEN_CLASS)) {
       closeSidebar()
     } else {
@@ -196,16 +178,36 @@ function renderSidebarToc() {
     }
   }
 
-  // Botón hamburguesa flotante (abajo izquierda)
-  menuToggle.addEventListener('click', toggleSidebar)
+  // Botón hamburguesa flotante (escritorio + mobile)
+  menuToggle.addEventListener('click', () => {
+    if (isMobile()) {
+      // En mobile → abre/cierra drawer lateral
+      toggleSidebarMobile()
+    } else {
+      // En escritorio → colapsa/expande sidebar
+      body.classList.toggle('sidebar-collapsed')
+    }
+  })
 
-  // Botón interno dentro de la sidebar (si existe)
+  // Botón interno dentro de la sidebar:
+  // - Mobile: abre/cierra drawer
+  // - Desktop: colapsa/expande sidebar
   if (innerToggle) {
-    innerToggle.addEventListener('click', toggleSidebar)
+    innerToggle.addEventListener('click', () => {
+      if (isMobile()) {
+        toggleSidebarMobile()
+      } else {
+        body.classList.toggle('sidebar-collapsed')
+      }
+    })
   }
 
-  // Cerrar tocando el overlay
-  sidebarOverlay.addEventListener('click', closeSidebar)
+  // Cerrar tocando el overlay (solo drawer mobile)
+  sidebarOverlay.addEventListener('click', () => {
+    if (isMobile()) {
+      closeSidebar()
+    }
+  })
 
   // Cerrar al seleccionar un link del índice (solo mobile)
   const tocLinks = sidebar.querySelectorAll('.toc a')
@@ -217,17 +219,21 @@ function renderSidebarToc() {
     })
   })
 
-  // Cerrar con tecla Escape
+  // Cerrar con tecla Escape (solo mobile)
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && isMobile()) {
       closeSidebar()
     }
   })
 
-  // Si redimensionamos a desktop, garantizar que el drawer esté cerrado
+  // Si redimensionamos:
+  // - Al pasar a desktop: cerramos drawer y dejamos sidebar visible
+  // - Al pasar a mobile: quitamos colapso de escritorio si lo hubiera
   window.addEventListener('resize', () => {
     if (!isMobile()) {
       closeSidebar()
+    } else {
+      body.classList.remove('sidebar-collapsed')
     }
   })
 })()
@@ -239,21 +245,105 @@ function renderSidebarToc() {
   const btnTop = document.getElementById('backToTop')
   if (!btnTop) return
 
+  const mainContent = document.querySelector('.main-content')
+
+  // 🧠 Detecta automáticamente quién tiene scroll real:
+  // - Si .main-content desborda → usamos .main-content
+  // - Si no → usamos window
+  const getScrollSource = () => {
+    if (mainContent && mainContent.scrollHeight > mainContent.clientHeight) {
+      return mainContent
+    }
+    return window
+  }
+
+  const getScrollY = () => {
+    const src = getScrollSource()
+    if (src === window) {
+      return window.scrollY || document.documentElement.scrollTop
+    }
+    return src.scrollTop
+  }
+
   const toggleVisibility = () => {
-    const y = window.scrollY || document.documentElement.scrollTop
-    if (y > 400) {
+    const y = getScrollY()
+
+    // 👉 Umbral distinto según viewport:
+    // - Mobile / tablet (≤900px): aparece antes
+    // - Desktop: más abajo
+    const threshold = window.innerWidth <= 900 ? 150 : 400
+
+    if (y > threshold) {
       btnTop.classList.add('visible')
     } else {
       btnTop.classList.remove('visible')
     }
   }
 
+  // Escuchamos scroll en ambos por si acaso,
+  // pero getScrollSource decide de dónde leer.
   window.addEventListener('scroll', toggleVisibility)
+  if (mainContent) {
+    mainContent.addEventListener('scroll', toggleVisibility)
+  }
+
+  // Forzamos estado correcto al cargar
+  toggleVisibility()
 
   btnTop.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
+    const src = getScrollSource()
+    if (src === window) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    } else {
+      src.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
   })
 })()
+
+// =========================
+// 5) FULLSCREEN API (sin mezclar F11)
+// =========================
+;(function () {
+  const btn = document.getElementById('fullscreenToggle')
+  if (!btn || !document.documentElement.requestFullscreen) return
+
+  const ENTER_ICON = '⛶'
+  const EXIT_ICON = '🞬'
+
+  function updateIcon() {
+    if (document.fullscreenElement) {
+      btn.textContent = EXIT_ICON
+      btn.setAttribute('aria-label', 'Salir de pantalla completa')
+    } else {
+      btn.textContent = ENTER_ICON
+      btn.setAttribute('aria-label', 'Pantalla completa')
+    }
+  }
+
+  btn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen()
+    } else {
+      document.exitFullscreen()
+    }
+  })
+
+  document.addEventListener('fullscreenchange', updateIcon)
+
+  updateIcon()
+})()
+
+// Inicialización del debug de viewport
+initViewportDebug({
+  alwaysVisible: false, // true = siempre visible (modo desarrollo)
+  logToConsole: true,
+})
+// =========================
+// FIN archivo: /docs/js/main.js
+// =========================

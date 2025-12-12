@@ -76,6 +76,7 @@ _(Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo)_
 ### ✔ Commit aplicado
 
 # 🚀 Sprint 006 — Fullscreen Layout (CSS Base)
+
 ### ✔ Checklist
 
 - [x] Body dejó de estar centrado (`layout-fullscreen` aplicado).
@@ -84,13 +85,13 @@ _(Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo)_
 - [x] Main-content correctamente desplazado a la derecha en ≥900px.
 - [x] En mobile, la sidebar sigue siendo drawer sin cambios visuales.
 - [x] Ningún elemento de contenido pierde padding o estructura.
-- [X] Preparado para Sprint 007 (JS Drawer clean-up).
+- [x] Preparado para Sprint 007 (JS Drawer clean-up).
 
 # 🧩 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
 
 ### ✔ Checklist funcional
 
-- [X] El menú lateral en mobile se abre/cierra correctamente con el botón `#menuToggle`.
+- [x] El menú lateral en mobile se abre/cierra correctamente con el botón `#menuToggle`.
 - [x] El botón interno `#sidebarToggle` (dentro del header de la sidebar) también abre/cierra el drawer en mobile.
 - [x] Al hacer click en el overlay (`#sidebarOverlay`), el drawer se cierra.
 - [x] Al hacer click en cualquier link del índice (`.toc a`) en mobile, el drawer se cierra.
@@ -114,6 +115,52 @@ _(Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo)_
   - `sidebarToggle`
 - [x] El TOC dinámico sigue funcionando (click en capítulos y sprints desplaza correctamente).
 
+## 🧪 Checklist — Sprint 008
+
+- [ ] Los paddings globales del `<main>` se ajustaron (entre 2.4rem y 3rem).
+- [ ] El contenido se siente más respirado sin perder densidad visual.
+- [ ] Sidebar y contenido mantienen una distancia agradable en desktop.
+- [ ] El scroll del `<main>` es suave y estable (`scroll-behavior: smooth`).
+- [ ] El layout se adapta correctamente al activar **F11** (fullscreen real).
+- [ ] No quedan restos del layout antiguo (padding del `<body>`, centrados, etc.).
+- [ ] El encabezado principal (`h1`) adopta un estilo tipo workspace (Notion/GPT).
+- [ ] Sidebar tiene padding superior e inferior más amplio (≈2rem).
+- [ ] La UI en fullscreen mantiene proporciones correctas y sin “pegotes” en bordes.
+- [ ] Ningún cambio rompe mobile o tablet.
+
+---
+
+# 🧩 Sprint 009 — Fullscreen Real (F11-like) + Polish visual
+
+### ✔ Funcionalidad
+
+- [ ] El botón `#fullscreenToggle` aparece correctamente junto al botón de tema.
+- [ ] Al hacer click en `#fullscreenToggle` cuando NO está en fullscreen:
+  - [ ] La app entra en fullscreen real (API `requestFullscreen`).
+  - [ ] El icono del botón cambia a 🞬.
+- [ ] Al hacer click en `#fullscreenToggle` cuando YA está en fullscreen:
+  - [ ] La app sale de fullscreen.
+  - [ ] El icono del botón vuelve a ⛶.
+- [ ] Al usar F11 o ESC para entrar/salir de fullscreen:
+  - [ ] El icono del botón se sincroniza automáticamente gracias a `fullscreenchange`.
+- [ ] No se producen errores en consola relacionados con fullscreen.
+
+### ✔ UX / Visual
+
+- [ ] En fullscreen (F11 o botón), el contenido no queda pegado a los bordes superior/inferior.
+- [ ] Sidebar mantiene un padding superior cómodo en fullscreen.
+- [ ] El botón de fullscreen se integra bien con:
+  - [ ] `theme-toggle`
+  - [ ] `back-to-top`
+- [ ] El layout fullscreen (Sprints 005–009) se sigue viendo correcto al usar F11:
+  - [ ] sin bordes raros,
+  - [ ] sin recortes,
+  - [ ] sidebar y contenido mantienen proporción.
+
+### ✔ Compatibilidad
+
+- [ ] En navegadores que no soportan bien fullscreen, no se rompe nada (el botón simplemente no hace nada o lanza un error controlado en consola).
+- [ ] En mobile/tablet, si el navegador no permite fullscreen completo, la app sigue funcionando normalmente.
 
 ---
 
@@ -131,7 +178,6 @@ _(Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo)_
 - [ ] El comportamiento se mantiene coherente en anchos 1200px, 900px, 768px y 600px.
 
 ---
-
 
 - [ ] Sidebar ocupa 100% de alto y mayor ancho
 - [ ] Animación tipo “drawer” nativa

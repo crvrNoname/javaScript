@@ -6,15 +6,18 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 ---
 
 ## 📅 Sprint 001 — Inicio del Proyecto & Estructura Base
+
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX  
+**Fecha:** 2025-01-XX
 
 ### 🎯 Objetivos
+
 - Crear la estructura general del proyecto.
 - Implementar repositorio Git en GitHub.
 - Crear archivos iniciales: README.md, .gitignore, index.html.
 
 ### 🧩 Resultado
+
 - Proyecto inicial operativo.
 - Carpetas base creadas.
 - Flujo de trabajo con VSCode + Git funcionando.
@@ -22,15 +25,18 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 ---
 
 ## 📅 Sprint 002 — Sidebar + Render Dinámico de Sprints
+
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX  
+**Fecha:** 2025-01-XX
 
 ### 🎯 Objetivos
+
 - Crear menú lateral (sidebar).
 - Implementar render dinámico con JS.
 - Añadir estructura de capítulos y sprints.
 
 ### 🧩 Cambios técnicos
+
 - `sidebar.js` creado.
 - `data/` con arrays de capítulos y sprints.
 - Diseño base de sidebar listo.
@@ -38,21 +44,25 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 ---
 
 ## 📅 Sprint 003 — Mobile Menu (tipo GPT) + Mejora UI
+
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX  
+**Fecha:** 2025-01-XX
 
 ### 🎯 Objetivos
+
 - Hacer el menú lateral usable en mobile.
 - Botón hamburguesa flotante.
 - Overlay clicable.
 - Mejoras en paddings y legibilidad.
 
 ### 🧪 Problemas detectados y resueltos
+
 - Sidebar quedaba borroso → corregido.
 - Overlay no permitía clic en elementos → solucionado.
 - Padding excesivo → optimizado.
 
 ### 🧩 Cambios técnicos
+
 - CSS responsive reorganizado.
 - `sidebar-open` logic refinada.
 - Ajustes de `.toc` y espaciados.
@@ -60,10 +70,12 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 ---
 
 ## 📅 Sprint 004 — Mejores Prácticas + Documentación del Proyecto
+
 **Estado:** 🔄 En desarrollo  
-**Fecha:** 2025-01-XX  
+**Fecha:** 2025-01-XX
 
 ### 🎯 Objetivos
+
 - Crear STYLE-GUIDE.md
 - Crear SPRINT-BEST-PRACTICES.md
 - Crear CHECKLIST.md
@@ -71,6 +83,7 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 - Organizar flujo profesional de commits.
 
 ### 📚 Archivos documentales agregados
+
 - `STYLE-GUIDE.md`
 - `CHECKLIST.md`
 - `SPRINT-BEST-PRACTICES.md`
@@ -78,6 +91,7 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 - `commits.md`
 
 ---
+
 # 🧩 Sprint Nº004.5 — Chapter Tag & Code Pills
 
 > Ajuste visual de la burbuja `chapter-tag` y de las burbujas `<code>` inline  
@@ -98,15 +112,18 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 
 1. **Actualizar el bloque CSS de `.chapter-tag`** al final de  
    `/docs/css/style.css` para:
+
    - Agregar margen vertical extra.
    - Ajustar `line-height` y layout interno si es necesario.
 
 2. **Definir estilo específico para `<code>` inline** (sin afectar `pre > code`):
+
    - Convertirlos en “píldoras” centradas (`inline-flex`).
    - Ajustar padding interno y `border-radius`.
    - Agregar `margin` lateral para que no se peguen entre sí.
 
 3. **Probar el nuevo diseño en los anchos clave**:
+
    - 1200px+ (layout full).
    - 900px.
    - 768px.
@@ -118,6 +135,7 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
        centradas tanto en párrafos como en títulos/viñetas.
 
 4. **Test de regresión rápido**:
+
    - Revisar al menos 2 capítulos distintos donde haya:
      - una `.chapter-tag`;
      - varias `<code>` seguidas (`window`, `document`, etc.);
@@ -126,21 +144,26 @@ Cada sprint documenta: objetivos, tareas, decisiones técnicas, cambios al códi
 5. **Commit & mensaje**:
    - Commit sugerido:  
      `chore(ui): refine chapter tag spacing & inline code pills`
----------------------------------------------
+
+---
 
 ## 📅 Sprint 005 — Fullscreen Layout (Próximo)
+
 **Estado:** 🕐 Próximo  
 **Objetivo:** Llevar el proyecto a un layout fullscreen moderno, sin envolvente `.shell`, como aplicaciones tipo Notion / ChatGPT.
 
 ### 📌 Alcance previsto
+
 - Eliminar container fijo central.
 - Sidebar flotante + contenido en ancho completo en desktop.
 - Adaptación al nuevo sistema responsive.
 
 ---
+
 # 🧩 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
 
 Vamos a:
+
 - Unificar la lógica del drawer en **un solo módulo JS**.
 - Cerrar la sidebar con:
   - botón hamburguesa,
@@ -151,11 +174,50 @@ Vamos a:
 
 ---
 
+# 🧩 Sprint 008 — Fine-Tuning Fullscreen Layout
+
+_(altura, paddings, scroll smooth — feeling Notion/ChatGPT)_
+
+## 🎯 Objetivo
+
+- Alinear paddings, alturas y márgenes para que el contenido respire.
+- Ajustar el scroll del `<main>` para que no “salte” ni se sienta brusco.
+- Balancear la distancia visual entre sidebar ↔ contenido.
+- Hacer que en modo **F11 (fullscreen real)** el sitio se vea perfecto:
+  - sin bordes incómodos,
+  - sin offsets heredados del layout antiguo.
+- Eliminar estilos restantes de la versión “centrada” que afectan el tamaño.
+- Dejar la UI moderna y con “sensación de web-app”, similar a Notion y ChatGPT.
+
+---
+
+n este sprint vamos a dejar pulido también cómo se ve al apretar F11.
+O sea: botón de fullscreen real + buena vista cuando entras/sales a fullscreen.
+
+Te dejo todo armado en formato .md, con código listo para copiar/pegar.
+
+# 🧩 Sprint 009 — Fullscreen Real (F11-like) + Polish visual
+
+## 🎯 Objetivo
+
+- Agregar un botón de **pantalla completa real** (API `requestFullscreen`), tipo F11.
+- Permitir entrar/salir de fullscreen desde la propia app.
+- Mantener el icono del botón sincronizado con el estado (normal / fullscreen).
+- Asegurar que **al apretar F11**:
+  - el layout se siga viendo bien (sin bordes raros, sin offsets),
+  - sidebar y contenido mantengan proporción,
+  - los paddings sigan siendo cómodos.
+- Integrar este comportamiento con el fullscreen layout ya trabajado en los sprints anteriores.
+
+---
+
 ## 📅 Sprint 006 — Modularización del JavaScript
+
 **Estado:** 🕐 Pendiente  
 **Objetivo:** Separar completamente `main.js` en módulos atómicos.
 
 ### Módulos previstos:
+
 - `sidebar.js`
 - `scroll.js`
 - `theme.js`
@@ -165,8 +227,10 @@ Vamos a:
 ---
 
 ## 📅 Sprint 007 — Optimización del Performance
+
 **Estado:** 🕐 Pendiente  
 **Objetivo:**
+
 - Lazy-loading del contenido
 - Menos repaints
 - CSS minificado
@@ -175,8 +239,10 @@ Vamos a:
 ---
 
 ## 📅 Sprint 008 — Accesibilidad y SEO
+
 **Estado:** 🕐 Pendiente  
 **Objetivo:**
+
 - ARIA Roles
 - Tabindex ordenado
 - Contrastes WCAG
@@ -185,42 +251,51 @@ Vamos a:
 ---
 
 ## 📅 Sprint 009 — Refactorización del CSS
+
 **Estado:** 🕐 Pendiente  
-**Objetivo:**  
-- Separar CSS en componentes  
-- BEM o Utility Classes  
-- Limpieza de duplicados  
+**Objetivo:**
+
+- Separar CSS en componentes
+- BEM o Utility Classes
+- Limpieza de duplicados
 
 ---
 
 ## 📅 Sprint 010 — Refactorización del HTML
+
 **Estado:** 🕐 Pendiente  
-**Objetivo:**  
-- Semántica  
-- Estructura optimizada  
-- Menos “div soup”  
+**Objetivo:**
+
+- Semántica
+- Estructura optimizada
+- Menos “div soup”
 
 ---
 
 ## 📅 Sprint 011 — Migración a JS Modules (import/export)
+
 **Estado:** 🕐 Pendiente  
-**Objetivo:**  
-- Estructura ESM profesional  
-- Archivos interconectados  
-- Preparación para builds futuras  
+**Objetivo:**
+
+- Estructura ESM profesional
+- Archivos interconectados
+- Preparación para builds futuras
 
 ---
 
 ## 📅 Sprint 012 — Preparación para app React (a futuro)
+
 **Estado:** 🕐 Pendiente  
-**Objetivo:**  
-- Extraer datos y UI a JSON para reutilizar  
-- Crear arquitectura portable  
-- Dejar el proyecto listo para migración a un frontend framework  
+**Objetivo:**
+
+- Extraer datos y UI a JSON para reutilizar
+- Crear arquitectura portable
+- Dejar el proyecto listo para migración a un frontend framework
 
 ---
 
 # 📌 Estado general del proyecto
+
 | Sprint | Estado |
 | ------ | ------ |
 | 001    | ✔️     |
@@ -235,7 +310,6 @@ Vamos a:
 | 010    | 🌱     |
 | 011    | 🌱     |
 | 012    | 🌱     |
-
 
 | Icono | Estado                        | Significado                                                         |
 | ----- | ----------------------------- | ------------------------------------------------------------------- |
@@ -252,12 +326,14 @@ Vamos a:
 ---
 
 # 📌 Cómo agregar nuevos sprints
+
 Copiar esta plantilla:
 
-````md
+```md
 ## 📅 Sprint XXX — Título
+
 **Estado:** 🕐  
-**Fecha:**  
+**Fecha:**
 
 ### 🎯 Objetivos
 
@@ -266,3 +342,4 @@ Copiar esta plantilla:
 ### 🧪 Problemas encontrados
 
 ### 📍 Próximos pasos
+```

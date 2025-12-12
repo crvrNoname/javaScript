@@ -1,3 +1,8 @@
+/* ============================================
+  📄 Archivo: /docs/css/style.css
+  Descripción: Estilos globales del Libro Web
+=============================================== */
+
 :root {
   --bg: #f5f5f7;
   --bg-alt: #ffffff;
@@ -5,13 +10,11 @@
   --muted: #555;
   --accent: #2563eb;
   --accent-soft: rgba(37, 99, 235, 0.08);
-  --border: #e0e0e6;
+  --border: #e6e3e0;
   --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.12);
 
-  --chapter-bg: #f8fafc;
-  /* MUY suave, casi blanco */
-  --chapter-text: #1e293b;
-  /* azul gris oscuro */
+  --chapter-bg: #f8fafc;           /* Muy suave, casi blanco */
+  --chapter-text: #1e293b;         /* Azul gris oscuro */
   --card-bg: linear-gradient(135deg, #ffffff, #f0f4ff);
 
   --inline-code-bg: rgba(15, 23, 42, 0.06);
@@ -28,24 +31,21 @@
   --muted: #9ca3af;
   --accent: #38bdf8;
   --accent-soft: rgba(56, 189, 248, 0.16);
-  --border: #1f2933;
+  --border: #8cbeea;
   --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.6);
 
-  --chapter-bg: #0b1120;
-  /* azul oscuro elegante */
-  --chapter-text: #e5e7eb;
-  /* blanco suave */
+  --chapter-bg: #0b1120;         /* Azul oscuro elegante */
+  --chapter-text: #e5e7eb;       /* Blanco suave */
   --card-bg: linear-gradient(135deg, #0f172a, #1e293b);
-
 
   --inline-code-bg: rgba(15, 23, 42, 0.9);
   --inline-code-text: #e5e7eb;
   --inline-code-border: rgba(148, 163, 184, 0.4);
 
   --sidebar-bg: rgba(2, 6, 23, 0.96);
-
 }
 
+/* RESET BÁSICO */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -62,11 +62,8 @@ body.layout-fullscreen {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  display: flex;
-  flex-direction: row;
   padding: 0;
 }
-
 
 /* CONTENEDOR FULLSCREEN */
 .shell {
@@ -74,20 +71,56 @@ body.layout-fullscreen {
   height: 100vh;
   display: flex;
   flex-direction: row;
-  overflow: hidden;
+  overflow-x: hidden;  /* oculta scroll horizontal */
+  overflow-y: visible; /* contenido vertical fluye dentro de main */
   background: var(--bg-alt);
 }
 
-/* Sidebar */
+/* Distribución de ancho entre sidebar y contenido en desktop */
+.shell > aside.sidebar {
+  flex: 0 0 280px;  /* ancho fijo para la barra lateral */
+  max-width: 320px;
+  width: 100%;
+}
+
+.shell > main.main-content {
+  flex: 1 1 auto;
+  min-width: 0;     /* clave: permite encogerse sin desbordarse */
+}
+
+/* ----------------------------------
+   Sidebar
+---------------------------------- */
+
 .sidebar {
   border-right: 1px solid var(--border);
-  padding: 1.75rem 1.5rem;
+  padding:  2rem 1.5rem 3.8rem;
   background: linear-gradient(145deg, var(--bg-alt), var(--accent-soft));
   position: relative;
 }
 
+/* Degradé fijo al fondo del sidebar que va ocultando el texto del índice */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20rem;              /* alto de la zona donde se "pierden" las letras */
+  pointer-events: none;
+  /* el texto se ve normal arriba y se va ocultando hacia abajo */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    var(--sidebar-bg) 100%
+  );
+}
+
+
+
 .sidebar-header {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,31 +150,10 @@ body.layout-fullscreen {
   color: var(--muted);
 }
 
-/* SIDEBAR DESKTOP — Siempre visible en pantallas grandes */
-@media (min-width: 900px) {
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 300px;
-    height: 100vh;
-    overflow-y: auto;
-    border-right: 1px solid var(--border);
-    backdrop-filter: blur(6px);
-  }
-
-  /* El contenido inicia después de la sidebar */
-  .main-content {
-    margin-left: 300px;
-  }
-}
-
-
-/* Botón toggle índice (mobile) */
+/* Botón toggle índice (desktop + mobile) */
 .sidebar-toggle {
-  display: none;
-  /* visible solo en mobile */
+  display: flex; /* ahora visible también en escritorio */
+  align-items: center;
 }
 
 .sidebar-toggle button {
@@ -162,16 +174,22 @@ body.layout-fullscreen {
   font-size: 1rem;
 }
 
+/* Lista del índice (TOC) */
 .toc {
   list-style: none;
   font-size: 0.92rem;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 260px);
   overflow-y: auto;
   padding-right: 0.25rem;
+   padding-bottom: 3.5rem;
+  margin-top: 0.8rem;
+  position: relative;  
   transition: max-height 0.2s ease, opacity 0.2s ease;
 }
 
-.toc>li+li {
+
+
+.toc > li + li {
   margin-top: 0.5rem;
 }
 
@@ -207,18 +225,34 @@ body.layout-fullscreen {
   margin: 0.1rem 0;
 }
 
-/* Main content */
+/* ----------------------------------
+   MAIN — Fullscreen
+---------------------------------- */
+
 main.main-content {
-  padding: 1.75rem 2rem;
+  padding: 2.4rem clamp(1.4rem, 3vw, 3rem);
   height: 100vh;
   overflow-y: auto;
-  background: transparent;
+  scroll-behavior: smooth;
+  min-width: 0;
 }
 
+/* Scrollbars suaves para contenido fullscreen */
+main.main-content::-webkit-scrollbar {
+  width: 10px;
+}
 
-main h1 {
-  font-size: 1.9rem;
-  margin-bottom: 0.5rem;
+main.main-content::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+}
+
+/* Títulos */
+main.main-content h1 {
+  font-size: 2.3rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 main h2 {
@@ -235,6 +269,7 @@ main h3 {
   font-weight: 600;
 }
 
+/* Píldora de nivel */
 .pill {
   display: inline-flex;
   align-items: center;
@@ -248,26 +283,14 @@ main h3 {
   margin-bottom: 0.75rem;
 }
 
+/* Secciones principales */
 .chapter {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px dashed var(--border);
 }
 
-.sprint-list-main {
-  margin-left: 0.75rem;
-  margin-top: 0.25rem;
-}
-
-.sprint-list-main li {
-  margin-left: 0.9rem;
-  margin-bottom: 0.15rem;
-}
-
-.sprint-list-main li::marker {
-  color: var(--accent);
-}
-
+/* Texto destacado del propósito */
 .chapter-tag {
   font-size: 0.9rem;
   color: var(--muted);
@@ -276,50 +299,17 @@ main h3 {
   border-radius: 0.75rem;
   background: rgba(148, 163, 184, 0.12);
   border-left: 3px solid var(--accent);
-  /* Espacio extra arriba y abajo para que respire mejor */
   margin-block: 1.5rem;
-
-  /* Opcional, por si no estaban ya definidos */
   line-height: 1.6;
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
 }
 
-.chapter-tag::before {
-  inset-block: 0.75rem auto;
-  /* ajusta alto relativo a la caja */
-}
+/* ----------------------------------
+   ÍNDICE PRINCIPAL DE SPRINTS
+---------------------------------- */
 
-/* ──────────────────────────────────────────────
-   Estilo de "píldoras" para código inline
-   (no aplica a bloques <pre><code>…</code></pre>)
-   ─────────────────────────────────────────── */
-.main-content :not(pre)>code {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0.1rem 0.6rem;
-  margin: 0 0.15rem;
-  /* separa del texto y de otras píldoras */
-
-  border-radius: 999px;
-  /* forma de pastilla */
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
-  font-size: 0.9em;
-  line-height: 1.3;
-
-  background: var(--surface-2, #111827);
-  border: 1px solid var(--border-subtle, #374151);
-  color: var(--text-muted, #e5e7eb);
-
-  vertical-align: baseline;
-  white-space: nowrap;
-  /* evita cortes raros dentro de una misma píldora */
-}
-
-/* CONTENEDOR GENERAL DE CAPÍTULOS + SPRINTS */
 #sprints-container {
   display: flex;
   flex-direction: column;
@@ -336,18 +326,15 @@ main h3 {
   color: var(--chapter-text);
 }
 
-
-/* Título del capítulo sobre las burbujas */
+/* Título y descripción del grupo */
 .chapter-group-title {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
-
 }
 
 .chapter-group-desc {
   font-size: 0.85rem;
-
   margin-bottom: 0.75rem;
 }
 
@@ -365,7 +352,6 @@ main h3 {
   gap: 1rem;
 }
 
-
 /* TARJETAS DE SPRINT */
 .sprint-card {
   border-radius: 16px;
@@ -376,13 +362,11 @@ main h3 {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
-
   max-width: 100%;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
 }
-
 
 .sprint-title {
   font-size: 1.05rem;
@@ -406,6 +390,7 @@ main h3 {
   margin-bottom: 0.15rem;
 }
 
+/* Botón "Ir al Sprint" */
 .sprint-link {
   align-self: flex-start;
   margin-top: 0.4rem;
@@ -426,7 +411,10 @@ main h3 {
   box-shadow: 0 6px 14px rgba(37, 99, 235, 0.45);
 }
 
-/* Estilos de bloques de código */
+/* ----------------------------------
+   Código
+---------------------------------- */
+
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.85rem;
@@ -437,8 +425,7 @@ code {
   border: 1px solid var(--inline-code-border);
 }
 
-
-
+/* Bloques de código */
 pre {
   background: #020617;
   border-radius: 16px;
@@ -454,17 +441,48 @@ pre code {
   font-size: 0.85rem;
   line-height: 1.5;
   white-space: pre-wrap;
-  /* Permite saltos de línea */
   word-break: break-word;
-  /* Evita que palabras muy largas rompan el layout */
 }
 
-/* Offset para que los anchors no queden tan arriba */
+/* Offset para anchors (sprints, capítulos) */
 .chapter-group,
 .sprint-card {
   scroll-margin-top: 80px;
-  /* prueba entre 60–100px según lo que te guste */
 }
+
+/* ----------------------------------
+   BOTONES FLOTANTES
+---------------------------------- */
+
+/* Botón menú (escritorio + mobile) */
+.menu-toggle {
+  position: fixed;
+  bottom: 1rem;
+  left: 1.2rem;
+  z-index: 55;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+[data-theme="dark"] .menu-toggle {
+  background: #020617;
+  color: #f9fafb;
+}
+
+[data-theme="light"] .menu-toggle {
+  background: #ffffff;
+  color: #0f172a;
+}
+
 
 /* Theme toggle button */
 .theme-toggle {
@@ -490,12 +508,36 @@ pre code {
   font-size: 1.15rem;
 }
 
+/* Botón Fullscreen (F11-like) */
+.fullscreen-toggle {
+  position: fixed;
+  bottom: 1rem;
+  left: 4.2rem;
+  z-index: 55;
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  background: var(--bg-alt);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-toggle:hover {
+  transform: scale(1.05);
+  transition: transform 0.15s ease;
+}
+
 /* Botón "volver arriba" */
 .back-to-top {
   position: fixed;
   right: 4.2rem;
-  bottom: 4.8rem;
-  /* un poco sobre el toggle de tema */
+  bottom: 4.8rem; /* un poco sobre el toggle de tema */
   z-index: 40;
   width: 38px;
   height: 38px;
@@ -521,7 +563,10 @@ pre code {
   transform: translateY(0);
 }
 
-/* Scrollbars */
+/* ----------------------------------
+   Scrollbars globales
+---------------------------------- */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -535,54 +580,48 @@ pre code {
   border-radius: 999px;
 }
 
-/* Responsive */
 
-/* 1 columna para las tarjetas en tablets/móvil (regla general) */
+
+
+/* ----------------------------------
+   MODO "SIDEBAR COLAPSADA" EN ESCRITORIO
+   (clase a aplicar desde JS en <body>)
+---------------------------------- */
+
+body.sidebar-collapsed .shell > aside.sidebar {
+  flex: 0 0 0;
+  max-width: 0;
+  width: 0;
+  padding: 0;
+  border-right: none;
+  overflow: hidden;
+}
+
+body.sidebar-collapsed .sidebar {
+  transform: translateX(-100%);
+}
+
+body.sidebar-collapsed main.main-content {
+  padding-left: clamp(1.4rem, 4vw, 4rem);
+}
+
+/* ----------------------------------
+   Responsive
+---------------------------------- */
+
+/* MOBILE & TABLET — ≤900px */
 @media (max-width: 900px) {
 
-  /* Usar casi todo el ancho de la pantalla en móvil */
-  body {
-    padding: 0.75rem;
-  }
-
   .shell {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
+    height: 100vh;
     max-width: 100%;
-    border-radius: 16px;
+    border-radius: 0;
   }
 
-  /* Botón menú tipo GPT: abajo a la izquierda */
-  .menu-toggle {
-    position: fixed;
-    bottom: 1rem;
-    left: 1.2rem;
-    /* lado izquierdo del viewport */
-    z-index: 55;
-    width: 40px;
-    height: 40px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--bg-alt);
-    box-shadow: var(--shadow-soft);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-  }
+  
 
-  /* Colores según tema */
-  [data-theme="dark"] .menu-toggle {
-    background: #020617;
-    color: #f9fafb;
-  }
-
-  [data-theme="light"] .menu-toggle {
-    background: #ffffff;
-    color: #0f172a;
-  }
-
-  /* Sidebar como panel lateral oculto */
+  /* Sidebar como panel lateral */
   .sidebar {
     position: fixed;
     top: 0;
@@ -597,38 +636,14 @@ pre code {
     background: var(--sidebar-bg);
     backdrop-filter: blur(8px);
     overflow-y: auto;
-    padding: 1.2rem 0.8rem;
-  }
-
-  /* Más ancho para la lista del índice */
-  .toc {
-    padding-right: 0.4rem;
-    padding-left: 0.2rem;
-    /* antes estaba muy alejado */
-  }
-
-  /* Items más amplios horizontalmente */
-  .toc a {
-    padding: 0.5rem 0.4rem;
-    /* antes 0.4rem 0.6rem */
-    font-size: 1rem;
-  }
-
-  /* Capítulos dentro del sidebar más compactos */
-  .toc .chapter-link {
-    margin-left: 0.2rem;
-  }
-
-  .toc .sprint-list {
-    margin-left: 0.3rem;
-    padding-left: 0.5rem;
+    padding:  1.2rem 0.8rem 3.8rem;; 
   }
 
   body.sidebar-open .sidebar {
     transform: translateX(0);
   }
 
-  /* Overlay oscuro detrás del menú (clicable) */
+  /* Overlay detrás del menú */
   .sidebar-overlay {
     position: fixed;
     inset: 0;
@@ -644,19 +659,38 @@ pre code {
     pointer-events: auto;
   }
 
-  /* Bloquear scroll del body cuando el drawer está abierto */
+  /* Bloquear scroll cuando drawer está abierto */
   body.sidebar-open {
     overflow: hidden;
   }
 
-  /* Contenido principal */
-  main {
+  /* Contenido principal en mobile */
+  main.main-content {
     padding: 1.25rem 1.1rem 2.2rem;
+    height: auto;
     max-height: none;
     background: transparent;
   }
 
-  /* Capítulo y tarjetas adaptados */
+  .toc {
+    padding-right: 0.4rem;
+    padding-left: 0.2rem;
+  }
+
+  .toc a {
+    padding: 0.5rem 0.4rem;
+    font-size: 1rem;
+  }
+
+  .toc .chapter-link {
+    margin-left: 0.2rem;
+  }
+
+  .toc .sprint-list {
+    margin-left: 0.3rem;
+    padding-left: 0.5rem;
+  }
+
   .chapter-group {
     padding: 1.2rem;
     border-radius: 18px;
@@ -679,7 +713,7 @@ pre code {
   }
 }
 
-/* Ajustes extra para tablets/móvil más pequeños (≤768px) */
+/* Tablets/móvil ≤768px */
 @media (max-width: 768px) {
   .chapter-sprints-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -724,4 +758,83 @@ pre code {
     right: 3.5rem;
     bottom: 4.2rem;
   }
+}
+
+/* Ajustes para modo fullscreen real (F11) */
+:fullscreen .main-content,
+:-webkit-full-screen .main-content {
+  padding-top: 2.6rem;
+  padding-bottom: 3rem;
+}
+
+:fullscreen .sidebar,
+:-webkit-full-screen .sidebar {
+  padding-top: 2.2rem;
+}
+
+
+/* ============================================
+   Badge de diagnóstico de viewport (ViewportDebug)
+   ============================================ */
+#viewport-debug {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 99999;
+
+  min-width: 190px;
+  max-width: 260px;
+
+  padding: 0.55rem 0.75rem;
+  border-radius: 14px;
+  font-size: 0.7rem;
+  line-height: 1.4;
+
+  background: rgba(15, 23, 42, 0.94);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+  pointer-events: none;
+  display: none; /* se controla desde JS */
+
+  backdrop-filter: blur(6px);
+}
+
+#viewport-debug .vp-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+#viewport-debug .vp-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+#viewport-debug .vp-line span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  margin-left: 0.35rem;
+}
+
+#viewport-debug .vp-warning {
+  margin-top: 0.25rem;
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+#viewport-debug .vp-ok {
+  margin-top: 0.25rem;
+  color: #4ade80;
+  font-weight: 500;
+}
+
+#viewport-debug.is-weird {
+  border-color: #f97316;
+  box-shadow:
+    0 0 0 1px rgba(248, 113, 113, 0.8),
+    0 10px 28px rgba(0, 0, 0, 0.75);
 }
