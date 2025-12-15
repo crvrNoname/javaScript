@@ -12,7 +12,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 001 — Inicio del Proyecto & Estructura Base
 
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-01
 
 ### 🎯 Objetivos
 
@@ -31,7 +31,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 002 — Sidebar + Render Dinámico de Sprints
 
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-05
 
 ### 🎯 Objetivos
 
@@ -50,7 +50,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 003 — Mobile Menu (tipo GPT) + Mejora UI
 
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-10
 
 ### 🎯 Objetivos
 
@@ -76,7 +76,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 004 — Documentación & Mejores Prácticas del Proyecto
 
 **Estado:** 🔄 En desarrollo  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-15
 
 ### 🎯 Objetivos
 
@@ -99,7 +99,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 004.5 — Chapter Tag & Code Pills (UI Fix)
 
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-18
 
 > Ajuste visual de `.chapter-tag` y `<code>` inline para evitar roces y desalineación.
 
@@ -125,7 +125,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 005 — Fullscreen Layout (HTML Prep)
 
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-20
 
 **Objetivo:** preparar HTML para layout fullscreen moderno (tipo Notion/ChatGPT).  
 **Notas:** detalle completo en `CHECKLIST.md` (Sprint 005).
@@ -135,7 +135,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 006 — Fullscreen Layout (CSS Base)
 
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-22
 
 **Objetivo:** fullscreen CSS base con sidebar fija en desktop y drawer en mobile.  
 **Notas:** detalle completo en `CHECKLIST.md` (Sprint 006).
@@ -145,7 +145,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 007 — Sidebar Drawer (JS Clean & Scroll Lock)
 
 **Estado:** ✔️ Completado  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-25
 
 **Objetivo:** unificar control del drawer y bloquear scroll en mobile.  
 **Notas:** detalle completo en `CHECKLIST.md` (Sprint 007).
@@ -155,7 +155,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 008 — Fine-Tuning Fullscreen Layout
 
 **Estado:** 🧪 En pruebas / pendiente de cierre  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-01-27
 
 **Objetivo:** pulir paddings, alturas, scroll y “feeling web-app” (Notion/ChatGPT).  
 **Notas:** checklist detallado en `CHECKLIST.md` (Sprint 008).
@@ -165,7 +165,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 009 — Fullscreen Real (API requestFullscreen) + Polish
 
 **Estado:** 🕐 Pendiente  
-**Fecha:** 2025-01-XX
+**Fecha:** 2025-02-01
 
 **Objetivo:** botón fullscreen real tipo F11 + sincronización por `fullscreenchange`.  
 **Notas:** checklist detallado en `CHECKLIST.md` (Sprint 009).
@@ -175,7 +175,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 010 — Optimización de Performance
 
 **Estado:** 🌱 Sugerido / futuro posible  
-**Fecha:** -
+**Fecha:** 2025-02-10
 
 ### 🎯 Objetivo
 
@@ -189,7 +189,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 011 — Accesibilidad & SEO
 
 **Estado:** 🌱 Sugerido / futuro posible  
-**Fecha:** -
+**Fecha:** 2025-02-15
 
 ### 🎯 Objetivo
 
@@ -203,7 +203,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 012 — Refactor CSS (Componentización)
 
 **Estado:** 🌱 Sugerido / futuro posible  
-**Fecha:** -
+**Fecha:** 2025-02-20
 
 ### 🎯 Objetivo
 
@@ -216,7 +216,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 013 — Refactor HTML (Semántica & Orden)
 
 **Estado:** 🌱 Sugerido / futuro posible  
-**Fecha:** -
+**Fecha:** 2025-02-25
 
 ### 🎯 Objetivo
 
@@ -229,7 +229,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 014 — Migración a JS Modules (import/export)
 
 **Estado:** 🌱 Sugerido / futuro posible  
-**Fecha:** -
+**Fecha:** 2025-03-01
 
 ### 🎯 Objetivo
 
@@ -242,7 +242,7 @@ Cada sprint documenta objetivos, tareas, decisiones técnicas, cambios al códig
 ## 📅 Sprint 015 — Preparación para app React (a futuro)
 
 **Estado:** 🌱 Sugerido / futuro posible  
-**Fecha:** -
+**Fecha:** 2025-03-05
 
 ### 🎯 Objetivo
 

@@ -1,5 +1,5 @@
 <!-- ===================================================================== -->
-<!-- FILE: CHECKLIST.md                                                    -->
+<!-- FILE: CHECKLIST.md (REVISADO + AJUSTADO SIN INVENTAR CHECKS)           -->
 <!-- ===================================================================== -->
 
 # 📋 CHECKLIST — SprintLibroWeb
@@ -38,10 +38,13 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 
 ### 🔧 Modularización JS (base)
 
-- [x] `main.js` lógica general
-- [x] `sidebar.js` aislado
-- [x] `theme.js` separado
-- [x] `scroll.js` funcional (si existe typo en repo, corregir a `scroll.js`)
+- [x] `main.js` orquestación modular (init de módulos)
+- [x] `sidebar.js` aislado (módulo)
+- [x] `theme.js` separado (módulo)
+- [x] `backToTop.js` funcional (módulo)
+- [x] `fullscreen.js` funcional (módulo)
+- [x] `renderIndex.js` para render de cards + toc (módulo)
+- [ ] Confirmar nombre final del archivo `scroll.js` (si hay typo histórico en repo)
 
 ---
 
@@ -83,11 +86,11 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 
 ### 🚀 Performance — futuro
 
+- [ ] Reducir listeners innecesarios (scroll/resize) (alta prioridad cuando toque)
+- [ ] Lazy-load para imágenes grandes
+- [ ] Optimizar imágenes `/assets/img`
 - [ ] Minificar CSS (sprint futuro)
 - [ ] Minificar JS (sprint futuro)
-- [ ] Optimizar imágenes `/assets/img`
-- [ ] Lazy-load para imágenes grandes
-- [ ] Reducir listeners innecesarios
 
 ---
 
@@ -96,7 +99,7 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 - [x] Botones con `aria-label`
 - [x] Área mínima clickeable 40×40
 - [ ] Navegación con teclado (sprint futuro)
-- [ ] Revisar contraste WCAG real en dark mode
+- [ ] Revisar contraste WCAG real en dark mode (validación manual + herramienta)
 - [ ] Roles semánticos donde aplique (`nav`, `main`, `aside`, `section`, etc.)
 
 ---
@@ -142,8 +145,8 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 
 - [x] Body deja de estar centrado
 - [x] `.shell` fullscreen sin bordes/sombra
-- [x] Sidebar fija en desktop (`position: fixed`, `width: 300px`)
-- [x] `.main-content` desplazado a la derecha en ≥900px
+- [x] Sidebar fija en desktop (layout fijo en columna izquierda)
+- [x] `.main-content` correcto en ≥900px
 - [x] Mobile mantiene drawer
 - [x] Sin pérdida de padding/estructura en contenido
 - [x] Listo para Sprint 007 (JS cleanup)
@@ -168,15 +171,10 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 
 ### 🧪 Sprint 008 — Fine-Tuning Fullscreen Layout (pendiente)
 
-- [ ] Paddings globales del `<main>` ajustados (≈2.4rem–3rem)
-- [ ] Contenido más respirado sin perder densidad
+- [ ] Paddings globales del `<main>` afinados (feeling Notion/GPT)
 - [ ] Distancia sidebar ↔ contenido agradable en desktop
-- [ ] Scroll suave y estable (`scroll-behavior: smooth`)
 - [ ] Layout perfecto al activar F11 (fullscreen real)
-- [ ] Sin restos del layout centrado (padding/centrado antiguos)
-- [ ] `h1` estilo workspace (Notion/GPT)
-- [ ] Sidebar con padding vertical más cómodo (≈2rem)
-- [ ] UI fullscreen sin “pegotes” en bordes
+- [ ] Sidebar con padding vertical más cómodo en fullscreen real
 - [ ] Nada rompe mobile/tablet
 
 ### 🕐 Sprint 009 — Fullscreen Real (API requestFullscreen) + Polish (pendiente)
@@ -208,32 +206,32 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 ### 📌 `sidebar.js`
 
 - [x] Fondo sólido para lectura en mobile
-- [ ] Animación más suave abrir/cerrar
-- [ ] Ajustar ancho del panel según contenido
-- [ ] Asegurar cierre automático en todos los links del TOC (validar 100%)
-- [ ] Si hay duplicación, extraer a `utils.js`
-- [ ] Preparar versión fullscreen definitiva
+- [x] Animación abrir/cerrar (transición drawer) (validado)
+- [ ] Ajustar ancho del panel según contenido (solo si aparece necesidad real)
+- [x] Cierre automático en links del TOC (mobile) (validado)
+- [ ] Si hay duplicación, extraer helpers a `utils.js` (solo si aparece)
+- [ ] Preparar versión fullscreen definitiva (si hay ajustes visuales pendientes)
 
 ### 🌗 `theme.js`
 
 - [x] Guarda preferencia en localStorage
 - [x] Aplica tema en `DOMContentLoaded`
-- [ ] Animación suave al cambiar tema
-- [ ] Revisar contraste de todos los elementos
+- [ ] Animación suave al cambiar tema (opcional)
+- [ ] Revisar contraste de todos los elementos (WCAG real)
 
-### 🡅 `scroll.js`
+### 🡅 `scroll.js` / `backToTop.js`
 
 - [x] Botón “volver arriba” funcional
-- [ ] Mejorar condición de aparición
-- [ ] Animación más fluida al hacer scroll
-- [ ] Confirmar nombre final del archivo: `scroll.js` (sin typos)
+- [ ] Mejorar condición de aparición (opcional)
+- [ ] Animación más fluida al hacer scroll (opcional)
+- [ ] Confirmar nombre final del archivo (evitar typos históricos)
 
 ### 🧩 `main.js`
 
-- [ ] Eliminar funciones ya movidas a módulos
-- [ ] Asegurar ejecución tras `DOMContentLoaded`
-- [ ] Preparar instancias limpias para futura modularización
-- [ ] Documentación interna pendiente
+- [x] Orquestación limpia (init de módulos)
+- [x] Ejecución tras `DOMContentLoaded`
+- [x] Sin lógica de features dentro del main (solo init)
+- [x] Documentación interna (docstring estándar)
 
 ---
 
@@ -244,8 +242,8 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 - [x] JS: camelCase
 - [x] CSS: kebab-case
 - [x] Variables CSS documentadas
-- [ ] Evitar selectores profundos
-- [ ] Encabezado en todos los JS
+- [ ] Evitar selectores profundos (regla permanente)
+- [x] Encabezado en todos los JS (módulos actuales)
 
 ### ✔️ Reglas de commits
 
@@ -258,7 +256,7 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 
 - [x] README estructurado
 - [x] `STYLE-GUIDE.md` incluido
-- [x] `SPRINT-BEST-PRACTICE.md` incluido
+- [x] `SPRINT-BEST-PRACTICES.md` incluido
 - [x] `CHECKLIST.md` incluido
 - [ ] `CHANGELOG.md` actualizado sprint a sprint
 
