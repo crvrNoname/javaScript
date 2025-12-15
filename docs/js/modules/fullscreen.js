@@ -11,7 +11,7 @@ export const initFullscreen = () => {
   const rootEl = document.documentElement
 
   const ENTER_ICON = '⛶'
-  const EXIT_ICON = '🞬'
+  const EXIT_ICON = 'X'
 
   const isFullscreen = () =>
     !!(
