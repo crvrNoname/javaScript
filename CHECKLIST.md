@@ -54,30 +54,30 @@ Todo lo que debe revisarse, completarse y mantenerse durante el desarrollo.
 
 #### 🔍 Revisión UX (900 / 768 / 600)
 
-- [ ] Sidebar se muestra bien en 900px
-- [ ] TOC ajustado y legible
-- [ ] Botones flotantes no se superponen
-- [ ] No hay doble scrollbar
-- [ ] Tipografías legibles
-- [ ] Padding adecuado para dedo (mín. 12–16px)
-- [ ] Animaciones fluidas
-- [ ] Contraste correcto (light/dark)
+- [x] Sidebar se muestra bien en 900px
+- [x] TOC ajustado y legible
+- [x] Botones flotantes no se superponen
+- [x] No hay doble scrollbar
+- [x] Tipografías legibles
+- [x] Padding adecuado para dedo (mín. 12–16px)
+- [x] Animaciones fluidas
+- [x] Contraste correcto (light/dark)
 
 ---
 
 ### 📑 Sidebar (menú tipo GPT) — pendientes
 
-- [ ] Ajustar transición apertura/cierre
-- [ ] Animación suave en items del TOC
-- [ ] Preparar versión fullscreen (si aplica)
+- [x] Ajustar transición apertura/cierre
+- [x] Animación suave en items del TOC
+- [x] Preparar versión fullscreen (si aplica)
 
 ---
 
 ### 🔧 JS Modular / Refactorización — pendientes
 
-- [ ] Crear/llenar `utils.js` para funciones comunes (si realmente hay duplicación)
-- [ ] Encabezado en cada archivo JS (docstring estándar)
-- [ ] Evitar accesos al DOM antes de `DOMContentLoaded`
+- [x] Crear/llenar `utils.js` para funciones comunes (si realmente hay duplicación)
+- [x] Encabezado en cada archivo JS (docstring estándar)
+- [x] Evitar accesos al DOM antes de `DOMContentLoaded`
 
 ---
 
